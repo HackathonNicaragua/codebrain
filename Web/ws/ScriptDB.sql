@@ -30,7 +30,7 @@ CREATE TABLE user_info (
 );
 
 INSERT INTO user (username, password) VALUE ('SideMaster', '$2y$10$AMbMdxu2ZlQegiTnh7g.8..VVGZhLKKp5GzwaDxe/b77Zi/lO9HqS');
-INSERT INTO user_info (username, firstname, lastname, email, date_at, date_unix) VALUE ('Side Master','Jerson','Martínez', 'jersonmartinezsm@gmail.com','2017-11-24', '480340342');
+INSERT INTO user_info (username, firstname, lastname, email, date_at, date_unix) VALUE ('SideMaster','Jerson','Martínez', 'jersonmartinezsm@gmail.com','2017-11-24', '480340342');
 
 CREATE TABLE business (
 	id_business	INT UNSIGNED AUTO_INCREMENT NOT NULL, 

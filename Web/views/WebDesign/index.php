@@ -20,7 +20,7 @@
 <body id="perspective" class="perspective effect-moveleft body_maps">
 	<section class="container">
 		<header class="menu">
-			<section id="Logo">Logo</section>
+			<section id="Logo"><img src="views/WebDesign/src/logo.png" alt="Logo"></section>
 			<section id="Opciones">
 				<section id="Outer1">Log/Reg</section>
 				<section id="Outer2">Menu</section>
