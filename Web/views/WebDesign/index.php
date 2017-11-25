@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="views/WebDesign/css/normalizer.css">
 	<link rel="stylesheet" href="views/WebDesign/css/plantilla.css">
 	<link rel="stylesheet" href="views/WebDesign/css/css.css">
+
+	<link rel="stylesheet" href="views/WebDesign/login/css/style.css">
+
 	<script src="views/WebDesign/js/jquery.js"></script>
 	<script src="views/WebDesign/js/jquery.js"></script>
 	<script src="views/WebDesign/js/modernizr.js"></script>
@@ -45,8 +48,26 @@
 			<li>Opción 4</li>
 		</ul>
 	</nav>
-	<section class="login hidden">
+	<section class="login hidden acaelcodigo">
 		<!-- Agrega el formulario aqui -->
+		<div class="form" id="form">
+            <div class="field email">
+                <div class="icon"></div>
+                <input class="input" id="email" type="email" placeholder="Nombre de usuario" autocomplete="off"/>
+            </div>
+
+            <div class="field password">
+                <div class="icon"></div>
+                <input class="input" id="password" type="password" placeholder="Contraseña"/>
+            </div>
+
+            <button class="button" id="submit">INICIAR SESIÓN
+                <div class="side-top-bottom"></div>
+                <div class="side-left-right"></div>
+            </button onclick="javascript: ChangeWindowsLog();"><small>Registrarse</small>
+        </div>
 	</section>
+	
+    <script  src="views/WebDesign/login/js/index.js"></script>
 </body>
 </html>

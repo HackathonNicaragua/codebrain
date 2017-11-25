@@ -1,5 +1,5 @@
-.form {
-  margin: auto;
+.acaelcodigo .form {
+  margin: 70px auto;
   width: 400px;
   padding: 20px 30px;
   background: #fff;
@@ -15,13 +15,13 @@
   transition: transform 1s ease;
   transition: transform 1s ease, -webkit-transform 1s ease;
 }
-.form::before, .form::after {
+.acaelcodigo .form::before, .form::after {
   content: "";
   position: absolute;
   width: 100%;
   left: 0;
 }
-.form::before {
+.acaelcodigo .form::before {
   height: 100%;
   top: 0;
   -webkit-transform: translateZ(-100px);
@@ -29,7 +29,7 @@
   background: #333;
   opacity: 0.3;
 }
-.form::after {
+.acaelcodigo .form::after {
   content: "SUCCESS!";
   -webkit-transform: translateY(-50%) translateZ(-101px) scaleX(-1);
           transform: translateY(-50%) translateZ(-101px) scaleX(-1);
@@ -39,17 +39,17 @@
   font-weight: bold;
 }
 
-.field {
+.acaelcodigo .field {
   position: relative;
   background: #cfcfcf;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
-.field + .field {
+.acaelcodigo .field + .field {
   margin-top: 10px;
 }
 
-.icon {
+.acaelcodigo .icon {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -60,7 +60,7 @@
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
-.icon::before, .icon::after {
+.acaelcodigo .icon::before, .icon::after {
   content: "";
   display: block;
   width: 100%;
@@ -69,13 +69,13 @@
   top: 0;
   left: 0;
 }
-.icon::after {
+.acaelcodigo .icon::after {
   -webkit-transform: translateZ(-23px);
           transform: translateZ(-23px);
   opacity: 0.5;
 }
 
-.input {
+.acaelcodigo .input {
   border: 1px solid #dfdfdf;
   background: #fff;
   height: 48px;
@@ -86,7 +86,7 @@
           transform: translateZ(26px);
 }
 
-.button {
+.acaelcodigo .button {
   display: block;
   width: 100%;
   border: 0;
@@ -108,15 +108,15 @@
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
   cursor: pointer;
 }
-.button:hover {
+.acaelcodigo .button:hover {
   -webkit-transform: translateZ(13px);
           transform: translateZ(13px);
 }
 
-.side-top-bottom {
+.acaelcodigo .side-top-bottom {
   width: 100%;
 }
-.side-top-bottom::before, .side-top-bottom::after {
+.acaelcodigo .side-top-bottom::before, .side-top-bottom::after {
   content: "";
   width: 100%;
   height: 26px;
@@ -125,14 +125,14 @@
   position: absolute;
   left: 0;
 }
-.side-top-bottom::before {
+.acaelcodigo .side-top-bottom::before {
   -webkit-transform-origin: center top;
           transform-origin: center top;
   -webkit-transform: translateZ(-26px) rotateX(90deg);
           transform: translateZ(-26px) rotateX(90deg);
   top: 0;
 }
-.side-top-bottom::after {
+.acaelcodigo .side-top-bottom::after {
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: translateZ(-26px) rotateX(-90deg);
@@ -140,17 +140,17 @@
   bottom: 0;
 }
 
-.side-left-right {
+.acaelcodigo .side-left-right {
   height: 100%;
 }
-.side-left-right::before, .side-left-right::after {
+.acaelcodigo .side-left-right::before, .side-left-right::after {
   content: "";
   height: 100%;
   width: 26px;
   position: absolute;
   top: 0;
 }
-.side-left-right::before {
+.acaelcodigo .side-left-right::before {
   background: #e53935;
   -webkit-transform-origin: left center;
           transform-origin: left center;
@@ -158,7 +158,7 @@
           transform: rotateY(90deg);
   left: 0;
 }
-.side-left-right::after {
+.acaelcodigo .side-left-right::after {
   background: #e35d5b;
   -webkit-transform-origin: right center;
           transform-origin: right center;
@@ -167,45 +167,45 @@
   right: 0;
 }
 
-.email .icon::before, .email .icon::after {
+.acaelcodigo .email .icon::before, .email .icon::after {
   background: url(https://image.flaticon.com/icons/svg/131/131040.svg) center/contain no-repeat;
 }
 
-.password .icon::before, .password .icon::after {
+.acaelcodigo .password .icon::before, .password .icon::after {
   background: url(https://image.flaticon.com/icons/svg/130/130996.svg) center/contain no-repeat;
 }
 
-.face-up-left {
+.acaelcodigo .face-up-left {
   -webkit-transform: rotateY(-30deg) rotateX(30deg);
           transform: rotateY(-30deg) rotateX(30deg);
 }
 
-.face-up-right {
+.acaelcodigo .face-up-right {
   -webkit-transform: rotateY(30deg) rotateX(30deg);
           transform: rotateY(30deg) rotateX(30deg);
 }
 
-.face-down-left {
+.acaelcodigo .face-down-left {
   -webkit-transform: rotateY(-30deg) rotateX(-30deg);
           transform: rotateY(-30deg) rotateX(-30deg);
 }
 
-.face-down-right {
+.acaelcodigo .face-down-right {
   -webkit-transform: rotateY(30deg) rotateX(-30deg);
           transform: rotateY(30deg) rotateX(-30deg);
 }
 
-.form-complete {
+.acaelcodigo .form-complete {
   -webkit-animation: formComplete 2s ease;
           animation: formComplete 2s ease;
 }
 
-.form-error {
+.acaelcodigo .form-error {
   -webkit-animation: formError 2s ease;
           animation: formError 2s ease;
 }
 
-input:active, input:focus, button:active, button:focus {
+.acaelcodigo input:active, input:focus, button:active, button:focus {
   outline: none;
   border: 1px solid #e77371;
 }
@@ -267,7 +267,7 @@ input:active, input:focus, button:active, button:focus {
             transform: rotateX(-25deg) rotateY(-30deg);
   }
 }
-small {
+.acaelcodigo small {
   color: #999;
   text-align: center;
   display: block;
@@ -276,7 +276,7 @@ small {
           backface-visibility: hidden;
 }
 
-html, body {
+/*html, body {
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -288,4 +288,4 @@ html, body {
 
 *, *::before, *::after {
   box-sizing: border-box;
-}
+}*/
