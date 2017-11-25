@@ -7,9 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 
+import com.codebrain.minato.tragua.CustomDialogs.BaseDialog;
+import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
+import com.codebrain.minato.tragua.CustomDialogs.NewPlaceMarker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,11 +24,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapsActivity extends NavigationDrawerBaseActivity {
+public class MapsActivity extends NavigationDrawerBaseActivity implements DialogListener{
 
     private GoogleMap mMap;
     private CameraPosition cameraPosition;
@@ -68,12 +75,40 @@ public class MapsActivity extends NavigationDrawerBaseActivity {
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
 
-                // Add a marker in Sydney and move the camera
-                LatLng sydney = new LatLng(-34, 151);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                    @Override
+                    public View getInfoWindow(Marker marker) {
+                        return null;
+                    }
+
+                    @Override
+                    public View getInfoContents(Marker marker) {
+                        View infoWindow = getLayoutInflater().inflate(R.layout.custom_info_place_content,
+                                (FrameLayout)findViewById(R.id.map),
+                                false);
+
+                        return infoWindow;
+                    }
+                });
+
+                mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                    @Override
+                    public void onMapLongClick(LatLng latLng) {
+                        FragmentManager fm = getSupportFragmentManager();
+                        NewPlaceMarker dialog = new NewPlaceMarker();
+                        dialog.show(fm, "New Place MarkerDialog");
+                    }
+                });
+
+                getLocationPermission();
+                updateLocationUI();
+                getDeviceLocation();
             }
         });
+
+        FragmentManager fm = getSupportFragmentManager();
+        BaseDialog dialog = new BaseDialog();
+        dialog.show(fm, "Pruibdusc");
     }
 
     @Override
@@ -107,8 +142,14 @@ public class MapsActivity extends NavigationDrawerBaseActivity {
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful())
                         {
-                            mLastKnowLocation = task.getResult();
-                            setCameraPosition(new LatLng(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude()));
+                            if (task.getResult() == null)
+                            {
+                                Log.d("Error", "result = null");
+                            }
+                            else {
+                                mLastKnowLocation = task.getResult();
+                                setCameraPosition(new LatLng(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude()));
+                            }
                         }
                         else
                         {
@@ -148,13 +189,61 @@ public class MapsActivity extends NavigationDrawerBaseActivity {
         }
     }
 
+    protected void addMarker(String title, LatLng position, String data)
+    {
+        if (mMap != null)
+        {
+            mMap.addMarker(new MarkerOptions().title(title).position(position).snippet(data));
+        }
+    }
+
     /**
      * Manage the response for reques permission
      */
-    @Override
+    //@Override
     public void onRequestPermissionsResul(int requesCode,
                                          @NonNull String permissions[],
                                          @NonNull int[] grantResults)
+    {
+        mLocationPermissionGranted = false;
+        switch (requesCode)
+        {
+            case ConstantValues.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    mLocationPermissionGranted = true;
+                }
+                break;
+        }
+        updateLocationUI();
+    }
+
+    private void updateLocationUI()
+    {
+        if (mMap == null)   return;
+        try
+        {
+            if (mLocationPermissionGranted)
+            {
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            }
+            else
+            {
+                mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                mLastKnowLocation = null;
+                getLocationPermission();
+            }
+        }
+        catch (SecurityException e)
+        {
+            Log.d("exception", e.getMessage());
+        }
+    }
+
+    @Override
+    public void onCompleteDialog(Bundle args)
     {
 
     }
