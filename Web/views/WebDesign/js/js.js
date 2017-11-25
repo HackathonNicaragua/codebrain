@@ -52,6 +52,17 @@ function initMap() {
    	var map = new google.maps.Map($('#map').get(0), { center: {lat: 12.1442126, lng: -86.2717132}, zoom: 16,
           disableDefaultUI: true });
    	
+    var noPoi = [
+    {
+        featureType: "poi",
+        stylers: [
+          { visibility: "off" }
+        ]   
+      }
+    ];
+
+    map.setOptions({styles: noPoi});
+
    	var infoWindow = new google.maps.InfoWindow( {map: map} );
 	
     if (navigator.geolocation) {
@@ -144,3 +155,24 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 		}
 	});
 };
+
+function ChangeWindowsRegistro(){
+    $.ajax({
+        url: "views/WebDesign/login/registro.php",
+        success: function(data){
+            $(".acaelcodigo").html(data);          
+        }
+    });
+
+    // $(".finishedFormCod").html("<div class='field email'><div class='icon'></div><input class='input' id='email' type='email' placeholder='Nombre de usuario' autocomplete='off'/></div><div class='field password'><div class='icon'></div><input class='input' id='password' type='password' placeholder='Contraseña sss'/></div><button class='button' id='submit'>INICIAR SESIÓN<div class='side-top-bottom'></div><div class='side-left-right'></div>");
+}
+
+function ChangeWindowsLogin(){
+    $.ajax({
+        url: "views/WebDesign/login/file.php",
+        success: function(data){
+            $(".acaelcodigo").html(data);          
+        }
+    });
+    // $(".finishedFormCod").html("<div class='field email'><div class='icon'></div><input class='input' id='email' type='email' placeholder='Nombre de usuario' autocomplete='off'/></div><div class='field password'><div class='icon'></div><input class='input' id='password' type='password' placeholder='Contraseña sss'/></div><button class='button' id='submit'>INICIAR SESIÓN<div class='side-top-bottom'></div><div class='side-left-right'></div>");
+}

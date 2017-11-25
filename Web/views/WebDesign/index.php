@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="views/WebDesign/css/normalizer.css">
 	<link rel="stylesheet" href="views/WebDesign/css/plantilla.css">
 	<link rel="stylesheet" href="views/WebDesign/css/css.css">
+
+	<!-- <link rel="stylesheet" href="views/WebDesign/login/css/style.css"> -->
+
 	<script src="views/WebDesign/js/jquery.js"></script>
 	<script src="views/WebDesign/js/jquery.js"></script>
 	<script src="views/WebDesign/js/modernizr.js"></script>
@@ -45,8 +48,12 @@
 			<li>Opción 4</li>
 		</ul>
 	</nav>
-	<section class="login hidden">
-		<!-- Agrega el formulario aqui -->
+
+	<section class="login hidden acaelcodigo">
+		<?php
+			include ("views/WebDesign/login/file.php");
+		?>
 	</section>
+    <!-- <script  src="views/WebDesign/login/js/index.js"></script> -->
 </body>
 </html>
