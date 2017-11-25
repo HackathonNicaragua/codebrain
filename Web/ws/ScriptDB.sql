@@ -40,3 +40,58 @@ CREATE TABLE business_contact (
     
     FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+CREATE TABLE business_map (
+	id_business INT UNSIGNED NOT NULL, 
+    longitud 	VARCHAR(50), 
+    latitud		VARCHAR(50),
+    
+    FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE business_perfil (
+	id_business 	INT UNSIGNED NOT NULL, 
+    folder			VARCHAR(300),
+    src_img_perfil 	VARCHAR(1000), 
+    src_img_front	VARCHAR(1000), 
+    
+    FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE business_photos (
+	id_business INT UNSIGNED NOT NULL, 
+    id_img 		INT UNSIGNED AUTO_INCREMENT NOT NULL, 
+	folder		VARCHAR(300),
+    src_img 	VARCHAR(1000), 
+    date_at		VARCHAR(100), 
+    date_unix	VARCHAR(100),
+    
+    PRIMARY KEY (id_img),
+    FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE business_categories (
+	id_category INT UNSIGNED AUTO_INCREMENT NOT NULL, 
+	id_business INT UNSIGNED NOT NULL, 
+    category VARCHAR(60) NOT NULL,
+    
+    PRIMARY KEY (id_category),
+    FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE base_business_photos (
+    id 			INT UNSIGNED AUTO_INCREMENT NOT NULL, 
+	folder		VARCHAR(300),
+    src_img 	VARCHAR(1000), 
+    date_at		VARCHAR(100), 
+    date_unix	VARCHAR(100),
+    
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE base_business_categories (
+	id INT UNSIGNED AUTO_INCREMENT NOT NULL, 
+    category VARCHAR(60) NOT NULL,
+    
+    PRIMARY KEY (id)
+);
