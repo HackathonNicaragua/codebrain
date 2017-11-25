@@ -18,3 +18,25 @@ CREATE TABLE user_info (
 
 INSERT INTO user (username, password) VALUE ('Side Master', '$2y$10$AMbMdxu2ZlQegiTnh7g.8..VVGZhLKKp5GzwaDxe/b77Zi/lO9HqS');
 INSERT INTO user_info (username, firstname, lastname, email, date_at, date_unix) VALUE ('Side Master','Jerson','Martínez', 'jersonmartinezsm@gmail.com','2017-11-24', '480340342');
+
+CREATE TABLE business (
+	id_business	INT UNSIGNED AUTO_INCREMENT NOT NULL, 
+    username 	VARCHAR(100) NOT NULL, 
+	title 		VARCHAR(255) NOT NULL, 
+    description VARCHAR(1000), 
+    cod_ruc		VARCHAR(50), 
+    date_at		VARCHAR(100), 
+    date_unix	VARCHAR(100), 
+    
+    PRIMARY KEY (id_business),
+    FOREIGN KEY (username) REFERENCES user(username) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE business_contact (
+	id_business INT UNSIGNED NOT NULL, 
+    location 	VARCHAR(255) NOT NULL, 
+    phone_home	VARCHAR(20), 
+    phone_self	VARCHAR(20),
+    
+    FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
