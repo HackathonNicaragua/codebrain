@@ -49,8 +49,9 @@ $(document).ready(function() {
 // Google Maps
 var latlon;
 function initMap() {
-   	var map = new google.maps.Map($('#map').get(0), { center: {lat: 12.437346, lng: -86.87722}, zoom: 16,
+   	var map = new google.maps.Map($('#map').get(0), { center: {lat: 12.1442126, lng: -86.2717132}, zoom: 16,
           disableDefaultUI: true });
+   	
    	var infoWindow = new google.maps.InfoWindow( {map: map} );
 	
     if (navigator.geolocation) {
@@ -73,7 +74,7 @@ function initMap() {
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-   	infoWindow.setPosition(pos); 
+   	infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ? 
     	'Error: Fallo el servicio de Geolocalización' : 'Error: Navegador incompatible.');
 }
