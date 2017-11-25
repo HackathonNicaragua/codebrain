@@ -46,7 +46,7 @@
 		</ul>
 	</nav>
 	<section class="login hidden">
-		
+		<!-- Agrega el formulario aqui -->
 	</section>
 </body>
 </html>

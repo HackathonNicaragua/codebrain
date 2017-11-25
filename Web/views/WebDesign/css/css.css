@@ -5,4 +5,3 @@ header { position: absolute; z-index: 9; width: 100%; height: 50px; }
 .menu { color: white; background-color: rgba(48,63,129,0.7); padding: 10px 20px; }
 #Logo, #Outer1, #Outer2 { height: 90%; cursor: pointer; }
 #Opciones { float: right; }
-
