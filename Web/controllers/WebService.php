@@ -43,6 +43,7 @@
 				echo 2;					#No se han recibido los parametros
 		}
 
-
+		
+		
 	}
 ?>

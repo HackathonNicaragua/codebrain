@@ -131,5 +131,35 @@
 
 	    	return false;
 	    }
+
+	    public function AddBusiness($Array){
+	    	$username 	= empty($Array['username']) 	? "-" : $Array['username'];
+	    	$username 	= $this->CleanString($username);
+
+	    	$title 			= empty($Array['title']) 		? "-" : $Array['title'];
+	    	$description 	= empty($Array['description']) 	? "-" : $Array['description'];
+	    	$cod_ruc 		= empty($Array['cod_ruc']) 		? "-" : $Array['cod_ruc'];
+	    		    	
+	    	$q 		= "INSERT INTO business(username, title, description, cod_ruc, date_at, date_unix) VALUES (:username,:title,:description,:cod_ruc,:date_at,:date_unix);";
+	    	$stmt 	= $this->db->prepare($q);
+
+	    	$stmt->bindValue(":username", 		$username);
+	    	$stmt->bindValue(":title", 			$title);
+	    	$stmt->bindValue(":description", 	$description);
+	    	$stmt->bindValue(":cod_ruc", 		$cod_ruc);
+	    	$stmt->bindValue(":date_at", 		date('Y-n-j'));
+	    	$stmt->bindValue(":date_unix", 		(string)time());	
+	    
+	    	if ($stmt->execute()){
+	    		$id_business = $this->getBusinessId($username, $title);
+
+	    		if ($this->AddBusinessMap($id_business, $Array))
+	    			return true;
+	    	}
+
+	    	return false;
+	    }
+
 	}
-}
+
+?>
