@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/bac">
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:src="@drawable/ic_launcher_background"
+        android:text="@string/title_registry"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/info_text"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="#C8C9CB"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <EditText
+        android:id="@+id/firstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_padding"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:ems="10"
+        android:hint="@string/firstname"
+        android:inputType="text"
+        android:padding="@dimen/fab_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="ObsoleteLayoutParam" />
+    <EditText
+        android:id="@+id/lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_padding"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:ems="10"
+        android:hint="@string/lastname"
+        android:inputType="text"
+        android:padding="@dimen/fab_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <EditText
+        android:id="@+id/correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_padding"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:ems="10"
+        android:hint="@string/correo"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/fab_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="ObsoleteLayoutParam" />
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_padding"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:padding="@dimen/fab_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_padding"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="@dimen/fab_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="ObsoleteLayoutParam" />
+    <EditText
+        android:id="@+id/repeatpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/fab_padding"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:ems="10"
+        android:hint="@string/repeatpassword"
+        android:inputType="textPassword"
+        android:padding="@dimen/fab_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <Button
+        android:id="@+id/singup_boton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/colorAccent"
+        android:paddingBottom="@dimen/fab_margin"
+        android:paddingTop="@dimen/fab_margin"
+        android:text="@string/registry"
+        android:textColor="@color/white"
+        tools:ignore="ObsoleteLayoutParam" />
+
+</LinearLayout>
