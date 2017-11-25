@@ -160,6 +160,68 @@
 	    	return false;
 	    }
 
+	    public function getBusiness(){
+	    	$stmt = $this->db->query("SELECT * FROM user;");
+
+			if ($stmt->rowCount() > 0)
+	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
+					$RawData[] = $r;
+
+			return $RawData;
+	    }
+
+	    public function getBusinessUser($Array){
+	    	$username = empty($Array['username']) ? "-" : $Array['username'];
+	    	$username = $this->CleanString($username);
+
+	    	$stmt = $this->db->query("SELECT * FROM user WHERE username='".$username."';");
+
+			if ($stmt->rowCount() > 0)
+	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
+					$RawData[] = $r;
+
+			return $RawData;
+	    }
+
+	    public function updateBusiness($id_business, $Data){
+	    	$title 			= empty($Data['title']) 		? "-" : $Data['title'];
+	    	$description 	= empty($Data['description']) 	? "-" : $Data['description'];
+	    	$cod_ruc 		= empty($Data['cod_ruc']) 		? "-" : $Data['cod_ruc'];
+
+	    	$Update = "UPDATE business SET title='".$title."', description='".$description."', cod_ruc='".$cod_ruc."' WHERE id_business='".$id_business."'";
+	    	$Execute = $this->db->query($Update);
+	    	
+	    	if ($Execute)
+	    		return true;
+	    	
+	    	return false;
+	    }
+
+	    public function addBusinessContact($id_business, $Contacts){
+	    	$location 	= empty($Contacts['location']) 		? "-" : $Contacts['location'];
+	    	$phone_home = empty($Contacts['phone_home']) 	? "-" : $Contacts['phone_home'];
+	    	$phone_self = empty($Contacts['phone_self']) 	? "-" : $Contacts['phone_self'];
+	    	
+	    	if ($this->CheckBusinessContact($id_business))
+	    		if ($this->updateBusinessContact($id_business, $Contacts))
+	    			return true;
+
+	    	$q 		= "INSERT INTO business_contact(id_business, location, phone_home, phone_self) VALUES (:id_business,:location,:phone_home,:phone_self);";
+	    	$stmt 	= $this->db->prepare($q);
+
+	    	$stmt->bindValue(":id_business", 	$id_business);
+	    	$stmt->bindValue(":location", 		$location);
+	    	$stmt->bindValue(":phone_home", 	$phone_home);
+	    	$stmt->bindValue(":phone_self", 	$phone_self);
+	    
+	    	if ($stmt->execute())
+	    		return true;
+
+	    	return false;
+	    }
+
+	    
+
 	}
 
 ?>
