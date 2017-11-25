@@ -63,7 +63,19 @@
 			}
 		}
 
-		
+		public function getBusinessUser(){
+			$Model 		= new LoadModel("WebServiceModel");
+			$WebService = new WebServiceModel();
+
+			return json_encode($WebService->getBusinessUser($_REQUEST));
+		}
+
+		public function getBusiness(){
+			$Model = new LoadModel("WebServiceModel");
+			$WebService = new WebServiceModel();
+
+			return json_encode($WebService->getBusiness());
+		}
 
 	}
 ?>
