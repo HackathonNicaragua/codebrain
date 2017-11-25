@@ -267,7 +267,9 @@
             transform: rotateX(-25deg) rotateY(-30deg);
   }
 }
+
 .acaelcodigo small {
+  cursor: pointer;
   color: #999;
   text-align: center;
   display: block;

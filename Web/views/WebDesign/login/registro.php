@@ -5,17 +5,27 @@
     <div class="finishedFormCod">
     	<div class="field email">
             <div class="icon"></div>
-            <input class="input" id="username" type="username" placeholder="Nombre de usuario" autocomplete="off"/>
+            <input class="input" id="username" type="text" placeholder="* Nombre de usuario" autocomplete="off"/>
         </div>
 
         <div class="field email">
             <div class="icon"></div>
-            <input class="input" id="email" type="email" placeholder="Nombre de usuario" autocomplete="off"/>
+            <input class="input" id="firstname" type="text" placeholder="Nombre" autocomplete="off"/>
         </div>
 
-        <div class="field password">
+        <div class="field email">
             <div class="icon"></div>
-            <input class="input" id="password" type="password" placeholder="Nombre completo"/>
+            <input class="input" id="lastname" type="text" placeholder="Apellido"/>
+        </div>
+
+        <div class="field email">
+            <div class="icon"></div>
+            <input class="input" id="email" type="email" placeholder="Correo eletrónico"/>
+        </div>
+
+        <div class="field email">
+            <div class="icon"></div>
+            <input class="input" id="password" type="password" placeholder="* Contraseña"/>
         </div>
 
         <button class="button" id="submit">REGISTRARSE

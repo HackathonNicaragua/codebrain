@@ -15,11 +15,11 @@ var formAnim = {
 		
 		if(d >= 0) {
 			this.$form.addClass(this.animClasses[d]);
-		} 
+		}
 	}
 }
 
-var $input = $('#email, #password'),
+var $input = $('#email, #password, #lastname, #firstname, #username'),
 		$submit = $('#submit'),
 		focused = false,
 		completed = false;
