@@ -293,6 +293,44 @@
 	    	}
 	    }
 
+	    #Método que obtiene el id_business validando también sus coordenadas. 
+	    public function getBusinessIdCheckMap($username, $longitud, $latitud){
+
+	    	if ($QBusiness->rowCount() > 0){
+
+	    		$QBusinessData = [];
+	    		while ($row = $QBusiness->fetch(\PDO::FETCH_ASSOC)){
+	    			$QBusinessData[] = [
+	    				'id_business' 	=> $row['id_business']
+	    			];
+	    		}
+
+	    		$QBusinessMap = $this->db->query("SELECT * FROM business_map WHERE longitud='".$longitud."' AND latitud='".$latitud."'");
+	    		
+	    		if ($QBusinessMap->rowCount() > 0){
+	    			$QBusinessMapData = [];
+		    		while ($row = $QBusinessMap->fetch(\PDO::FETCH_ASSOC)){
+		    			$QBusinessMapData[] = [
+		    				'id_business' 	=> $row['id_business']
+		    			];
+		    		}
+
+		    		$QBusinessData_id_business = "-";
+		    		foreach ($QBusinessMapData as $value) {
+		    			$QBusinessData_id_business = $value['id_business'];
+		    		}
+
+		    		#Se recorre la información de $QBusiness
+		    		foreach ($QBusinessData as $value) {
+		    			if ($QBusinessData_id_business == $value['id_business'])
+		    				return $QBusinessData_id_business;
+		    		}
+	    		}
+	    	} else {
+	    		return false;
+	    	}
+	    }
+
 	}
 
 ?>
