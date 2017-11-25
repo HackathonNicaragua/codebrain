@@ -89,3 +89,66 @@ $(function() {
 		}
 	}, 2000);
 })
+
+$("#btn_login").click(function(event) {
+	if ( $("#username").val().length * $("#password").val().length != 0 ) {
+		send ( { 
+			username:$("#username").val(), 
+			password:$("#password").val() 
+			}, 'controller=WebService&action=Login' );
+	}
+	else{
+		console.log('Uno de los campos esta vacio!');
+	}
+});	
+
+$("#btn_register").click(function(event) {
+	if ( 
+		$("#username").val().length * $("#firstname").val().length *
+		$("#lastname").val().length * $("#email").val().length *
+		$("#password").val().length != 0 ) {
+			send ( {
+				username :$("#username").val(), 
+				firstname:$("#firstname").val(),
+				lastname :$("#lastname").val(),
+				password :$("#password").val(),
+				email    :$("#email").val()
+			}, 'controller=WebService&action=AddUser' );
+	}
+	else{
+		console.log('Uno de los campos esta vacio!');
+	}
+	});
+
+function send ( array , get) {
+	$.ajax({
+		type: 'POST',
+		//url: 'http://hackathon.sidemasters.xyz/HackTest/index.php?'+get,
+		url: 'index.php?'+get,
+    	dataType: "json",
+		data: array,
+		success:function (data) {
+			if (data == 0){
+				$submit.css('pointer-events', 'none');
+				setTimeout(function() {
+					formAnim.faceDirection(4);
+					$input.val('');
+					completed = false;
+
+					setTimeout(function() {
+						$submit.css('pointer-events', '');
+						formAnim.resetClasses();
+					}, 2000);
+				}, 1000);
+			} else {
+				setTimeout(function() {
+				formAnim.faceDirection(5);
+
+				setTimeout(function() {
+					formAnim.resetClasses();
+				}, 2000);
+				}, 1000);
+			}
+		}	
+	});
+}
