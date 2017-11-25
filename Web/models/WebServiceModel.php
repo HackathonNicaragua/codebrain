@@ -220,7 +220,34 @@
 	    	return false;
 	    }
 
-	    
+	    public function updateBusinessContact($id_business, $Contacts){
+	    	$location 	= empty($Contacts['location']) 		? "-" : $Contacts['location'];
+	    	$phone_home = empty($Contacts['phone_home']) 	? "-" : $Contacts['phone_home'];
+	    	$phone_self = empty($Contacts['phone_self']) 	? "-" : $Contacts['phone_self'];
+
+	    	$Update = "UPDATE business_contact SET location='".$location."', phone_home='".$phone_home."', phone_self='".$phone_self."' WHERE id_business='".$id_business."'";
+	    	$Execute = $this->db->query($Update);
+	    	
+	    	if ($Execute)
+	    		return true;
+	    	
+	    	return false;
+	    }
+
+	    public function getBusinessCount(){
+	    	$q = $this->db->query("SELECT * FROM business;");
+			return $q->rowCount();
+	    }
+
+	    public function getBusinessContact($id_business){
+	    	$q = $this->db->query("SELECT * FROM business_contact WHERE id_business='".$id_business."'");
+
+	    	if ($q->rowCount() > 0)
+	    		while ($r = $q->fetch(\PDO::FETCH_ASSOC))
+					$RawData[] = $r;
+
+			return $RawData;
+	    }
 
 	}
 
