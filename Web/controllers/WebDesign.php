@@ -14,9 +14,5 @@
 
 			(new View("WebDesign/index.php", compact("ListWebDesign")));
 		}
-
-		public function Test(){
-			echo "Funciona";
-		}
 	}
 ?>
