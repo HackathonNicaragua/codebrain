@@ -1,0 +1,6 @@
+#Logo, #Outer1, #Outer2, #Add_B, #Logout { height: 90%; cursor: pointer; }
+nav, ul, li { padding: 0; } 
+.Portada { border: 1px solid black; }
+.Principal { height: 200px; width: 200px; border-radius: 100%; border: 1px solid black; margin: 20px auto;}
+.navigation { min-height: 100% ;width: 30%; display: inline-block;  border: 1px solid black; vertical-align: top;}
+.info { min-height: 100% ;width: 69%; display: inline-block;  border: 1px solid black; vertical-align: top;}

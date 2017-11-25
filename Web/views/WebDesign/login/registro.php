@@ -28,7 +28,7 @@
             <input class="input" id="password" type="password" placeholder="* Contraseña"/>
         </div>
 
-        <button class="button" id="submit">REGISTRARSE
+        <button class="button" id="btn_register">REGISTRARSE
         <div class="side-top-bottom"></div>
         <div class="side-left-right"></div>
     </div>
