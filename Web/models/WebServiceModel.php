@@ -56,5 +56,23 @@
 
 			return $RawData;
 		}
+
+		public function LoginUser($usr, $pwd){
+	    	$usr = $this->CleanString($usr);
+
+	    	$pwd = trim($pwd);
+			if (!get_magic_quotes_gpc())
+				$usr = addslashes($usr);
+
+			$usr 	= mysql_escape_string($usr);
+	    	$stmt 	= $this->db->query("SELECT password FROM user WHERE username='".$usr."';");
+
+	    	if ($stmt->rowCount() > 0)
+	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
+	    			if (password_verify($pwd, $r['password']))
+	    				return true;
+
+	    	return false;
+	    }
 	}
 }
