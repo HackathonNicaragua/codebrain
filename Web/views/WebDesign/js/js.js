@@ -167,7 +167,6 @@ function ChangeWindowsRegistro(){
     // $(".finishedFormCod").html("<div class='field email'><div class='icon'></div><input class='input' id='email' type='email' placeholder='Nombre de usuario' autocomplete='off'/></div><div class='field password'><div class='icon'></div><input class='input' id='password' type='password' placeholder='Contraseña sss'/></div><button class='button' id='submit'>INICIAR SESIÓN<div class='side-top-bottom'></div><div class='side-left-right'></div>");
 }
 
-
 function ChangeWindowsLogin(){
     $.ajax({
         url: "views/WebDesign/login/file.php",

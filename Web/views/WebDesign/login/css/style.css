@@ -30,7 +30,7 @@
   opacity: 0.3;
 }
 .acaelcodigo .form::after {
-  content: "SUCCESS!";
+  content: "SATISFACTORIO!";
   -webkit-transform: translateY(-50%) translateZ(-101px) scaleX(-1);
           transform: translateY(-50%) translateZ(-101px) scaleX(-1);
   top: 50%;
