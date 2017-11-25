@@ -249,6 +249,50 @@
 			return $RawData;
 	    }
 
+	    public function CheckBusiness($id_business){
+	    	$R = $this->db->query("SELECT * FROM business WHERE id_business='".$id_business."';");
+
+	    	if ($R->rowCount() > 0)
+	    		return false;
+
+	    	return true;
+	    }
+
+	    public function addBusinessMap($id_business, $Coords){
+	    	$longitud 	= empty($Coords['longitud']) 	? "-" : $Coords['longitud'];
+	    	$latitud 	= empty($Coords['latitud']) 	? "-" : $Coords['latitud'];
+
+	    	$q 		= "INSERT INTO business_map(id_business, longitud, latitud) VALUES (:id_business,:longitud,:latitud);";
+	    	$stmt 	= $this->db->prepare($q);
+
+	    	$stmt->bindValue(":id_business", $id_business);
+	    	$stmt->bindValue(":longitud", 	$longitud);
+	    	$stmt->bindValue(":latitud", 	$latitud);
+	    
+	    	if ($stmt->execute())
+	    		return true;
+
+	    	return false;
+	    }
+
+	    public function getBusinessId($username, $title){
+	    	$QBusiness = $this->db->query("SELECT id_business FROM business WHERE username='".$username."' AND title='".$title."'");
+	    
+	    	if ($stmt->rowCount() > 0){
+	    		$UsersData = [];
+
+	    		while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
+	    			$UsersData[] = [
+	    				'id_business' => $row['id_business']
+	    			];
+	    		}
+
+	    		foreach ($UsersData as $value) {
+	    			return $value['id_business'];
+	    		}
+	    	}
+	    }
+
 	}
 
 ?>
