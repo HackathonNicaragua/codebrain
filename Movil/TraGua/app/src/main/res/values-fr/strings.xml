@@ -5,4 +5,8 @@
     <string name="welcome">Bienvenue</string>
     <string name="language">La langue</string>
     <string name="ok">D\'accord</string>
+    <string name="action_settings">----</string>
+    <string name="navigation_drawer_close">---</string>
+    <string name="navigation_drawer_open">--</string>
+    <string name="title_activity_navigation_drawer">---</string>
 </resources>
