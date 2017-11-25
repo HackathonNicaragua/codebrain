@@ -18,4 +18,13 @@
     <string name="share">compartilhar</string>
     <string name="send">enviar</string>
     <string name="settings">configurações</string>
+    <string name="title_registry">registro</string>
+    <string name="firstname">primeiro nome</string>
+    <string name="password">senha</string>
+    <string name="lastname">último nome</string>
+    <string name="username">nome de usuário</string>
+    <string name="correo">o email</string>
+    <string name="repeatpassword">Repita a senha</string>
+    <string name="login">entrar</string>
+    <string name="registry">Sign Up</string>
 </resources>
