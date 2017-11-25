@@ -43,7 +43,27 @@
 				echo 2;					#No se han recibido los parametros
 		}
 
+		public function AddBusiness(){
+			$Model 		= new LoadModel("WebServiceModel");
+			$WebService = new WebServiceModel();
+
+			if (isset($_REQUEST)){
+				if ($WebService->CheckBusiness($_REQUEST)){
+					
+					if ($WebService->AddBusiness($_REQUEST)){
+						echo 0;			#Agregado
+					} else {
+						echo 4; 		#El usuario no se ha podido registrar
+					}
+				} else {
+					echo 3;				#El usuario ya existe
+				}
+			} else {
+				echo 2;					#No se han recibido los parametros
+			}
+		}
+
 		
-		
+
 	}
 ?>
