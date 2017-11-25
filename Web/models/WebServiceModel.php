@@ -105,5 +105,31 @@
 
 	    	return true;
 	    }
+
+	    public function CheckUserEmail($email){
+	    	$R = $this->db->query("SELECT * FROM user WHERE email='".$email."';");
+
+	    	if ($R->rowCount() > 0)
+	    		return false;
+
+	    	return true;
+	    }
+
+	    public function AddUserInfo($username, $firstname, $lastname, $email){
+	    	$q = "INSERT INTO user_info(username, firstname, lastname, email, date_at, date_unix) VALUES (:username,:firstname,:lastname,:email,:date_at,:date_unix);";
+	       	$stmt = $this->db->prepare($q);
+
+	    	$stmt->bindValue(":username", 	$username);
+	    	$stmt->bindValue(":firstname", 	$firstname);
+	    	$stmt->bindValue(":lastname", 	$lastname);
+	    	$stmt->bindValue(":email", 		$email);
+	    	$stmt->bindValue(":date_at", 	date('Y-n-j'));
+	    	$stmt->bindValue(":date_unix", 	(string)time());
+
+	    	if ($stmt->execute())
+	    		return true;
+
+	    	return false;
+	    }
 	}
 }
