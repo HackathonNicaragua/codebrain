@@ -10,14 +10,14 @@
 
         <div class="field password">
             <div class="icon"></div>
-            <input class="input" id="password" type="password" placeholder="Contraseña"/>
+            <input class="input" id="password" type="password" placeholder="Nombre completo"/>
         </div>
 
-        <button class="button" id="submit">INICIAR SESIÓN
+        <button class="button" id="submit">REGISTRARSE
         <div class="side-top-bottom"></div>
         <div class="side-left-right"></div>
     </div>
-    </button><small onclick="javascript: ChangeWindowsRegistro();">Registrarse</small>
+    </button><small onclick="javascript: ChangeWindowsLogin();">Registrarse</small>
 </div>
 
 <script src="views/WebDesign/login/js/index.js"></script>
