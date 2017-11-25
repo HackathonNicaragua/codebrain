@@ -46,5 +46,15 @@
 		    #Se retorna el nuevo string.
 		    return $str;
 		}
+
+		public function getUsers(){
+			$stmt = $this->db->query("SELECT * FROM user;");
+
+			if ($stmt->rowCount() > 0)
+	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
+					$RawData[] = $r;
+
+			return $RawData;
+		}
 	}
 }
