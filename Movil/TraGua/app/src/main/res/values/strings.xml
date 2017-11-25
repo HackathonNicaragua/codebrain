@@ -10,4 +10,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!--Strings for sideavigationview-->
+    <string name="change_languaje">Change Languaje</string>
+    <string name="Import">Import</string>
+    <string name="gallery">Gallery</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="settings">Settings</string>
+
 </resources>

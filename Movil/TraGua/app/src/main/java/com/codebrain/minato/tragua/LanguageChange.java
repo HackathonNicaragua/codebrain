@@ -17,7 +17,7 @@ import java.util.Locale;
  * Created by David on 25/11/2017.
  */
 
-public class LanguageChange extends AppCompatActivity{
+public class LanguageChange extends NavigationDrawerBaseActivity {//AppCompatActivity{
     private String [] lengua = new String[]{
             "English",
             "Spanish",

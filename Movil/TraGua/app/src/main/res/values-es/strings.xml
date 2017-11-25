@@ -9,4 +9,13 @@
     <string name="navigation_drawer_close">Cerrar Panel de Navegacion</string>
     <string name="action_settings">Configuracion</string>
     <string name="title_activity_navigation_drawer">--</string>
+    <string name="change_languaje">Cambiar Idioma</string>
+    <string name="Import">Importar</string>
+    <string name="gallery">Galeria</string>
+    <string name="slideshow">SlideShow</string>
+    <string name="tools">Herramientas</string>
+    <string name="communicate">Comunicacion</string>
+    <string name="share">Compartir</string>
+    <string name="send">Enviar</string>
+    <string name="settings">Configuracion</string>
 </resources>

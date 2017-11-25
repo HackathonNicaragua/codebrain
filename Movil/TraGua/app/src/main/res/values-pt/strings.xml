@@ -9,4 +9,13 @@
     <string name="title_activity_navigation_drawer">--</string>
     <string name="navigation_drawer_open">--</string>
     <string name="navigation_drawer_close">--</string>
+    <string name="change_languaje">Mudar idioma</string>
+    <string name="Import">importar</string>
+    <string name="gallery">galeria</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Ferramentas</string>
+    <string name="communicate">Comunicar</string>
+    <string name="share">compartilhar</string>
+    <string name="send">enviar</string>
+    <string name="settings">configurações</string>
 </resources>

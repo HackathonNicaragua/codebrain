@@ -35,4 +35,12 @@
         </menu>
     </item>
 
+    <item android:title="Settings">
+        <menu>
+            <item android:id="@+id/change_languaje"
+                android:title="@string/change_languaje"
+                android:icon="@drawable/ic_menu_manage"/>
+        </menu>
+    </item>
+
 </menu>

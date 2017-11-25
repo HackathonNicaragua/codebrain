@@ -1,5 +1,6 @@
 package com.codebrain.minato.tragua;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -14,12 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 /**
  * Created by username on 11/25/2017.
  */
 
-public abstract class NavigationDrawerBaseActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener{
+public abstract class NavigationDrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {//implements MenuItem.OnMenuItemClickListener{
     private FrameLayout view_stub;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
@@ -56,12 +58,17 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
                 this, drawerLayout, toolbar, 0, 0);
         drawerLayout.addDrawerListener(toggle);
 
+        if (navigationView != null)
+        {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
 
-        drawerMenu = navigationView.getMenu();
+
+        /*drawerMenu = navigationView.getMenu();
         for (int i=0; i<drawerMenu.size(); i++)
         {
             drawerMenu.getItem(i).setOnMenuItemClickListener(this);
-        }
+        }*/
     }
 
     @Override
@@ -87,12 +94,32 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+    /*@Override
     public boolean onMenuItemClick(MenuItem item)
     {
         switch (item.getItemId())
         {
             case R.id.nav_camera:
+                break;
+            case R.id.change_languaje:
+                Toast.makeText(getApplicationContext(), "Change languaje", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), LanguageChange.class);
+                startActivity(intent);
+                break;
+        }
+        return false;
+    }*/
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.nav_camera:
+                break;
+            case R.id.change_languaje:
+                //Toast.makeText(getApplicationContext(), "Change languaje", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), LanguageChange.class);
+                startActivity(intent);
                 break;
         }
         return false;
