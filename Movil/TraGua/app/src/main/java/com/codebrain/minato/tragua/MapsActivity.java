@@ -1,13 +1,17 @@
 package com.codebrain.minato.tragua;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,8 +38,18 @@ public class MapsActivity extends NavigationDrawerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //retrieve saced state
+        if (savedInstanceState != null)
+        {
+            mLastKnowLocation = savedInstanceState.getParcelable(ConstantValues.KEY_LOCATION);
+            cameraPosition = savedInstanceState.getParcelable(ConstantValues.KEY_CAMERA_POSITION);
+        }
+
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -60,6 +74,17 @@ public class MapsActivity extends NavigationDrawerBaseActivity {
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        if (mMap != null)
+        {
+            outState.putParcelable(ConstantValues.KEY_CAMERA_POSITION, mMap.getCameraPosition());
+            outState.putParcelable(ConstantValues.KEY_LOCATION, mLastKnowLocation);
+            super.onSaveInstanceState(outState);
+        }
     }
 
     protected void setCameraPosition(LatLng latLng)
@@ -105,5 +130,32 @@ public class MapsActivity extends NavigationDrawerBaseActivity {
         }
     }
 
-    
+    /**
+     * Reques permissions
+     */
+    private void getLocationPermission()
+    {
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            mLocationPermissionGranted = true;
+        }
+        else
+        {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    ConstantValues.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+    }
+
+    /**
+     * Manage the response for reques permission
+     */
+    @Override
+    public void onRequestPermissionsResul(int requesCode,
+                                         @NonNull String permissions[],
+                                         @NonNull int[] grantResults)
+    {
+
+    }
 }
