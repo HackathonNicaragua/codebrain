@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TraGua</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="language">La langue</string>
+    <string name="ok">D\'accord</string>
+</resources>
