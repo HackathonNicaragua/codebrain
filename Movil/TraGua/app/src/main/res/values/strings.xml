@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">TraGua</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_registry">Registry</string>
+    <string name="firstname">First Name</string>
+    <string name="password">Password</string>
+    <string name="lastname">Last Name</string>
+    <string name="username">UserName</string>
+    <string name="correo">Email</string>
+    <string name="repeatpassword">Repeat Password</string>
+    <string name="login">Login</string>
+    <string name="registry">SingUp</string>
 </resources>
