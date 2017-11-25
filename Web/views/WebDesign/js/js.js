@@ -52,6 +52,17 @@ function initMap() {
    	var map = new google.maps.Map($('#map').get(0), { center: {lat: 12.1442126, lng: -86.2717132}, zoom: 16,
           disableDefaultUI: true });
    	
+    var noPoi = [
+    {
+        featureType: "poi",
+        stylers: [
+          { visibility: "off" }
+        ]   
+      }
+    ];
+
+    map.setOptions({styles: noPoi});
+
    	var infoWindow = new google.maps.InfoWindow( {map: map} );
 	
     if (navigator.geolocation) {
