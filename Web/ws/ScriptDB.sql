@@ -1,3 +1,16 @@
+DROP TABLE business_categories;
+DROP TABLE business_photos;
+DROP TABLE business_perfil;
+DROP TABLE business_map;
+DROP TABLE business_contact;
+DROP TABLE business;
+
+DROP TABLE user_info;
+DROP TABLE user;
+
+DROP TABLE base_business_photos;
+DROP TABLE base_business_categories;
+
 CREATE TABLE user (
 	username 	VARCHAR(100) NOT NULL, 
 	password 	VARCHAR(60) NOT NULL, 
