@@ -18,6 +18,9 @@ import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
 import com.codebrain.minato.tragua.CustomDialogs.NewPlaceMarker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.PlaceDetectionClient;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,6 +36,10 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
 
     private GoogleMap mMap;
     private CameraPosition cameraPosition;
+
+    //the entry point to the places api
+    private GeoDataClient mGeoDataClient;
+    private PlaceDetectionClient mPlaceDetectionClient;
 
     private boolean mLocationPermissionGranted;//used to known if have permision for location
 
@@ -56,6 +63,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
+        mGeoDataClient = Places.getGeoDataClient(this, null);
+        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -200,8 +209,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     /**
      * Manage the response for reques permission
      */
-    //@Override
-    public void onRequestPermissionsResul(int requesCode,
+    @Override
+    public void onRequestPermissionsResult(int requesCode,
                                          @NonNull String permissions[],
                                          @NonNull int[] grantResults)
     {
