@@ -189,7 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:minHeight="200dp">
-                <LinearLayout
+                <LinearLayout android:id="@+id/info_container_dash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -200,6 +200,14 @@
                         android:layout_height="wrap_content"
                         android:text="jhvdhvvfhvfbvjsdbvvgfkvbfhvbdfjbvfhvdjvdvdsh.dsvchjsdvc,dhcvdjvchVCdjcvdhcvsjdhc"/>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/info_container_dash"
+                    android:layout_marginBottom="@dimen/fab_margin"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="#C8C9CB" />
 
 
 
