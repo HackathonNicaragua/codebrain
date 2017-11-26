@@ -40,18 +40,17 @@ public class WhereDoYouGo extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
-        AlertDialog.Builder  builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder  builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
         View v = inflater.inflate(R.layout.where_do_you_go_dialog, null);
 
-        AppCompatImageView btPlacePicker_1 = (AppCompatImageView)v.findViewById(R.id.place_picker_1);
-        AppCompatImageView btPlacePicker_2 = (AppCompatImageView)v.findViewById(R.id.place_picker_2);
-        AppCompatButton travel_ok = (AppCompatButton)v.findViewById(R.id.travel_bt_ok);
-        AppCompatButton travel_cancel = (AppCompatButton)v.findViewById(R.id.travel_bt_cancel);
+        AppCompatImageView btPlacePicker_1 = v.findViewById(R.id.place_picker_1);
+        AppCompatImageView btPlacePicker_2 = v.findViewById(R.id.place_picker_2);
+        AppCompatButton travel_ok = v.findViewById(R.id.travel_bt_ok);
+        AppCompatButton travel_cancel = v.findViewById(R.id.travel_bt_cancel);
 
-        origin = (EditText)v.findViewById(R.id.where_origin);
-        destiny = (EditText)v.findViewById(R.id.where_destiny);
+        origin = v.findViewById(R.id.where_origin);
+        destiny = v.findViewById(R.id.where_destiny);
 
         travel_ok.setOnClickListener(new View.OnClickListener() {
             @Override
