@@ -260,5 +260,13 @@ function Back(){
 }
 
 function FuncMarker(){
+
+    $("#BusinessTextTitle").val($("#TextTitle").val());
+    $("#BusinessTextDescription").val($("#TextAreaDescription").text());
+    $("#BusinessTextRUC").val($("#TextRUC").val());
+    
+    $("#BusinessTextPhoneLocal").val($("#TextPhoneLocal").val());
+    $("#BusinessTextPhoneSelf").val($("#TextPhoneSelf").val());
+
     $("#map").click();
 }

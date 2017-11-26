@@ -175,6 +175,15 @@
 	
 	<form id="FormSendDataBusiness">
 		<input type="hidden" id="TypeBusiness" />
+		<input type="hidden" id="BusinessTextTitle" />
+		<input type="hidden" id="BusinessTextDescription" />
+		<input type="hidden" id="BusinessTextRUC" />
+		<input type="hidden" id="BusinessTextPhoneLocal" />
+		<input type="hidden" id="BusinessTextPhoneSelf" />
+
+		<input type="hidden" id="BusinessTextCoordLong" />
+		<input type="hidden" id="BusinessTextCoordLat" />
+		
 	</form>
 
 	<section class="login hidden acaelcodigo">
