@@ -1,0 +1,42 @@
+label.LogoLabel {
+	position: absolute;
+	margin-top: 2px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+header.menu section#Opciones .Outer1 {
+	margin-right: -4px; 
+	margin-top: -10px; 
+	padding: 14.5px; 
+	background-color: rgba(0,0,0,.3);
+}
+
+header.menu section#Opciones .Outer1:hover {
+	cursor: pointer;
+	background-color: rgba(0,0,0,.4);
+}
+
+header.menu section#Opciones .Outer2 {
+	margin-right: -4px; 
+	margin-top: -10px; 
+	padding: 14.5px; 
+	background-color: rgba(0,0,0,.5);
+}
+
+header.menu section#Opciones .Outer2:hover {
+	cursor: pointer;
+	background-color: rgba(0,0,0,.6);
+}
+
+header.menu section#Opciones .Outer3 {
+	margin-right: -20px; 
+	margin-top: -10px; 
+	padding: 14.5px; 
+	background-color: rgba(0,0,0,.6);
+}
+
+header.menu section#Opciones .Outer3:hover {
+	cursor: pointer;
+	background-color: rgba(0,0,0,.7);
+}

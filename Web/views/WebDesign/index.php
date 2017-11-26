@@ -1,3 +1,7 @@
+<?php
+	@session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +11,19 @@
 	<link rel="stylesheet" href="views/WebDesign/css/normalizer.css">
 	<link rel="stylesheet" href="views/WebDesign/css/plantilla.css">
 	<link rel="stylesheet" href="views/WebDesign/css/css.css">
-	<link rel="stylesheet" href="views/WebDesign/css/extra.css">
+	
+	<?php
+		if (@$_SESSION['login'] != 1){
+			?>
+				<link rel="stylesheet" href="views/WebDesign/css/extra.css">
+			<?php
+		} else {
+			?>
+				<link rel="stylesheet" href="views/WebDesign/css/session_extra.css">
+			<?php
+		}
+	?>
+
 	<link rel="stylesheet" href="views/WebDesign/login/css/font-awesome.css">
 
 
@@ -20,13 +36,32 @@
 </head>
 <body id="perspective" style="background-color: rgba(48,63,129,0.7);" class="perspective effect-moveleft body_maps">
 	<section class="container">
-		<header class="menu">
-			<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
-			<section id="Opciones">
-				<section id="Outer1"><i class="fa fa-user-circle" aria-hidden="true"></i> Iniciar sesión</section>
-				<section id="Outer2"><i class="fa fa-bars" aria-hidden="true"></i> Menu</section>
-			</section>
-		</header>
+		
+		<?php
+			if (@$_SESSION['login'] != 1){
+				?>
+					<header class="menu">
+						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
+						<section id="Opciones">
+							<section id="Outer1"><i class="fa fa-user-circle" aria-hidden="true"></i> Iniciar sesión</section>
+							<section id="Outer2"><i class="fa fa-bars" aria-hidden="true"></i> Idioma</section>
+						</section>
+					</header>
+				<?php
+			} else {
+				?>
+					<header class="menu">
+						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
+						<section id="Opciones">
+							<section id="Outer2" class="Outer1"><i class="fa fa-bars" aria-hidden="true"></i> Idioma</section>
+							<section id="Outer3" class="Outer2"><i class="fa fa-user-circle" aria-hidden="true"></i> <?php echo @$_SESSION['username']; ?></section>
+							<section id="Outer4" class="Outer3" onclick="javascript: CloseSession();"><i class="fa fa-bars" aria-hidden="true"></i> Cerrar sesión</section>
+						</section>
+					</header>
+				<?php
+			}
+		?>
+
 		<main class="maps wrapper">
 			<section id="directions">
 			    <input id="origin-input" class="controls" type="text" placeholder="Enter a destination location" >

@@ -18,13 +18,18 @@
 			$Model 		= new LoadModel("WebServiceModel");
 			$WebService = new WebServiceModel();
 
-			if (isset($_REQUEST['username']) && isset($_REQUEST['password']))
-				if ($WebService->LoginUser($_REQUEST['username'], $_REQUEST['password']))
+			if (isset($_REQUEST['username']) && isset($_REQUEST['password'])){
+				if ($WebService->LoginUser($_REQUEST['username'], $_REQUEST['password'])){
+					@session_start();
+					@$_SESSION['login'] = 1;
+					@$_SESSION['username'] = $_REQUEST['username'];
 					echo 0;
-				else
+				} else {
 					echo 2;		#Error de logueo, credenciales incorrectas
-			else
+				}
+			} else {
 				echo 1; 		#Error al enviar los datos
+			}
 		}
 
 		public function AddUser(){
