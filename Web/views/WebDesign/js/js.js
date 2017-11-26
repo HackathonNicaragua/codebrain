@@ -8,7 +8,7 @@ $(document).ready(function() {
         $("#modal-view").toggleClass('ap');
     });
 
-    $("label").click(function(event) {
+    $(".lbl-filter input[type='checkbox']").change(function(event) {
         var places = $("#filters input[type='checkbox']:checked").map(function(){ return $(this).val();} ).get();
         console.log(places);
         clearMarkers();
@@ -19,7 +19,6 @@ $(document).ready(function() {
                 type: places
             }, callback);
         }
-        
     });
 
 	$('#Outer1, #Outer2').click(function(event) {
@@ -180,8 +179,7 @@ function ChangeWindowsRegistro(){
     $.ajax({
         url: "views/WebDesign/login/registro.php",
         success: function(data){
-            $(".acaelcodigo").hide(300);
-            $(".acaelcodigo").html(data).show(300);          
+            $(".acaelcodigo").html(data);          
         }
     });
 
@@ -192,16 +190,12 @@ function ChangeWindowsLogin(){
     $.ajax({
         url: "views/WebDesign/login/file.php",
         success: function(data){
-            $(".acaelcodigo").hide(300);
-            $(".acaelcodigo").html(data).show(300);          
+            $(".acaelcodigo").html(data);          
         }
     });
     // $(".finishedFormCod").html("<div class='field email'><div class='icon'></div><input class='input' id='email' type='email' placeholder='Nombre de usuario' autocomplete='off'/></div><div class='field password'><div class='icon'></div><input class='input' id='password' type='password' placeholder='Contraseña sss'/></div><button class='button' id='submit'>INICIAR SESIÓN<div class='side-top-bottom'></div><div class='side-left-right'></div>");
 }
 
-function CloseSession(){
-    window.location.href="views/WebDesign/login/php/logout.php";
-}
 
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -226,8 +220,8 @@ function createMarker(place) {
 }
 
 function clearMarkers() {
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(null);
-    }
+    while(markers.length){
+            markers.pop().setMap(null);
+        }
     markers = [];
 }
