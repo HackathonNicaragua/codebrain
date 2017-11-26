@@ -104,47 +104,60 @@
 		</main>
 	</section>
 	<nav class="outer-nav top horizontal hidden">
-		<ul class="MenuOptionsChoose" style="width: 650px;">
-			<h2>Mi negocio es de tipo</h2>
-			<div class="OptionsBox OptionHotel">
-				<div class="option">
-					<input type="radio" id="place_map_hotel" name="place_map" value="hotel"> <label for="place_map_hotel">Hotel</label><br>
+		<form id="FormChooseCategory">
+			<ul class="MenuOptionsChoose" style="width: 650px;">
+				<h2>Mi negocio es de tipo</h2>
+				<div class="OptionsBox OptionHotel">
+					<div class="option">
+						<input type="radio" id="place_map_hotel" name="place_map" value="hotel"> <label for="place_map_hotel">Hotel</label><br>
+					</div>
 				</div>
-			</div>
 
-			<div class="OptionsBox OptionComedor">
-				<div class="option">
-					<input type="radio" id="place_map_comedor" name="place_map" value="comedor"/> <label for="place_map_comedor">Comedor</label><br>
+				<div class="OptionsBox OptionComedor">
+					<div class="option">
+						<input type="radio" id="place_map_comedor" name="place_map" value="comedor"/> <label for="place_map_comedor">Comedor</label><br>
+					</div>
 				</div>
-			</div>
 
-			<div class="OptionsBox OptionTienda">
-				<div class="option">
-					<input type="radio" id="place_map_tienda" name="place_map" value="tienda"> <label for="place_map_tienda">Tienda</label><br>
+				<div class="OptionsBox OptionTienda">
+					<div class="option">
+						<input type="radio" id="place_map_tienda" name="place_map" value="tienda"> <label for="place_map_tienda">Tienda</label><br>
+					</div>
 				</div>
-			</div>
 
-			<br><br/>
+				<br><br/>
 
-			<div class="OptionsBox OptionHospital">
-				<div class="option">
-					<input type="radio" id="place_map_hospital" name="place_map" value="hospital"> <label for="place_map_hospital">Hospital</label><br>
+				<div class="OptionsBox OptionHospital">
+					<div class="option">
+						<input type="radio" id="place_map_hospital" name="place_map" value="hospital"> <label for="place_map_hospital">Hospital</label><br>
+					</div>
 				</div>
-			</div>
 
-			<div class="OptionsBox OptionMuseo">
-				<div class="option">
-					<input type="radio" id="place_map_museo" name="place_map" value="museo"> <label for="place_map_museo">Museo</label><br>
+				<div class="OptionsBox OptionMuseo">
+					<div class="option">
+						<input type="radio" id="place_map_museo" name="place_map" value="museo"> <label for="place_map_museo">Museo</label><br>
+					</div>
 				</div>
-			</div>
 
-			<div class="OptionsBox OptionOtro">
-				<div class="option">
-					<input type="radio" id="place_map_otro" name="place_map" value="otro"> <label for="place_map_otro">Otro...</label><br>
-				</div>
-			</div><br/>
-			<input type="button" value="Siguiente" id="NextForm" />
-		</ul>
+				<div class="OptionsBox OptionOtro">
+					<div class="option">
+						<input type="radio" id="place_map_otro" name="place_map" value="otro"> <label for="place_map_otro">Otro...</label><br>
+					</div>
+				</div><br/>
+
+				<?php
+					if (@$_SESSION['login'] != 1){
+						?>
+							<input type="button" onclick="javascript: SendLogin();" value="Siguiente" id="NextForm" />
+						<?php
+					} else {
+						?>
+							<input type="button" onclick="javascript: NextLevel();" value="Siguiente" id="NextForm" />
+						<?php
+					}
+				?>
+			</ul>
+		</form>
 	</nav>
 
 	<section class="login hidden acaelcodigo">
