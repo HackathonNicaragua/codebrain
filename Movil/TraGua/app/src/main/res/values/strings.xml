@@ -35,4 +35,5 @@
 
     <string name="empty_username">Can\'t be empty</string>
     <string name="password_incorrect">Wrong password or but insert</string>
+    <string name="authenticating">Authenticating</string>
 </resources>
