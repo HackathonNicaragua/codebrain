@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TraGua.iml" filepath="$PROJECT_DIR$/TraGua.iml" />
+      <module fileurl="file://C:\Users\edwin\Documents\GitHub\codebrain\Movil\TraGua\TraGua.iml" filepath="C:\Users\edwin\Documents\GitHub\codebrain\Movil\TraGua\TraGua.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\edwin\Documents\GitHub\codebrain\Movil\TraGua\app\app.iml" filepath="C:\Users\edwin\Documents\GitHub\codebrain\Movil\TraGua\app\app.iml" />
     </modules>
   </component>
 </project>

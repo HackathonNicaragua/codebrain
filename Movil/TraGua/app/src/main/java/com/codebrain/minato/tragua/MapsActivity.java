@@ -1,6 +1,9 @@
 package com.codebrain.minato.tragua;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -8,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +44,9 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     //the entry point to the places api
     private GeoDataClient mGeoDataClient;
     private PlaceDetectionClient mPlaceDetectionClient;
+
+    //Notification Class
+    private NotificationWrapper ntWrapper = new NotificationWrapper();
 
     private boolean mLocationPermissionGranted;//used to known if have permision for location
 
@@ -106,6 +113,24 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                         FragmentManager fm = getSupportFragmentManager();
                         NewPlaceMarker dialog = new NewPlaceMarker();
                         dialog.show(fm, "New Place MarkerDialog");
+                    }
+                });
+
+                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        /*NotificationCompat.Builder mBuilder;
+                        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+                        int Icono = R.drawable.logo_tragua;
+                        mBuilder = new NotificationCompat.Builder(getApplicationContext())
+                                .setSmallIcon(Icono)
+                                .setContentTitle("Notification!")
+                                .setContentText("Body of Notification")
+                                .setVibrate(new long[] {100,250,100,500})
+                                .setAutoCancel(true);
+
+                        notificationManager.notify(1,mBuilder.build());*/
+                        ntWrapper.SetNotification(getApplicationContext(),"Hola");
                     }
                 });
 
