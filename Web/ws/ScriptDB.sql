@@ -1,3 +1,4 @@
+DROP TABLE business_promo;
 DROP TABLE business_categories;
 DROP TABLE business_photos;
 DROP TABLE business_perfil;

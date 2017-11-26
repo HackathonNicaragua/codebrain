@@ -213,7 +213,7 @@
 											<div class="img">
 												<img id="img_business" src="views/WebDesign/src/img/place.png" alt="business" />
 											</div>
-											
+
 											<div class="info">
 												<div class="title">
 													<?php
@@ -226,14 +226,14 @@
 														echo $r['description'];
 													?>
 												</div>
+
 											</div>
 										</div><br/>
 					    			<?php
 					    		}
 							} else {
-								echo "No hay datos";
+								echo "<h4 align='center'>No hay datos</h4>";
 							}
-
 						?>
 					</div>
 
