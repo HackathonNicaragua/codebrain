@@ -11,13 +11,14 @@ import android.widget.Button;
  * Created by David on 25/11/2017.
  */
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends NavigationDrawerBaseActivity{
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button button = findViewById(R.id.login_boton);
+        Button button = findViewById(R.id.login_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

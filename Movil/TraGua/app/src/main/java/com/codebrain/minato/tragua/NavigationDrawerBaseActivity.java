@@ -115,6 +115,8 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
         switch (item.getItemId())
         {
             case R.id.nav_camera:
+                Intent intent1 = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.change_languaje:
                 //Toast.makeText(getApplicationContext(), "Change languaje", Toast.LENGTH_LONG).show();

@@ -31,4 +31,5 @@
     <string name="repeatpassword">Repeat Password</string>
     <string name="login">Login</string>
     <string name="registry">SingUp</string>
+    <string name="dont_have_account">No Account yet?? Create One</string>
 </resources>
