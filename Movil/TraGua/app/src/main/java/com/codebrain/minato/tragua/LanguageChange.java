@@ -3,6 +3,7 @@ package com.codebrain.minato.tragua;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,9 +21,9 @@ import java.util.Locale;
 public class LanguageChange extends NavigationDrawerBaseActivity {//AppCompatActivity{
     private String [] lengua = new String[]{
             "English",
-            "Spanish",
-            "Frances",
-            "Portuguese"
+            "Español",
+            "Français",
+            "Portugues"
     };
     private int item_lengua;
     private TextView tw;
@@ -79,15 +80,15 @@ public class LanguageChange extends NavigationDrawerBaseActivity {//AppCompatAct
             local = new Locale("en");
             configuration.locale = local;
             getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
-        }else if (lengua[item_lengua].equals("Spanish")){
+        }else if (lengua[item_lengua].equals("Español")){
             local = new Locale("es");
             configuration.locale = local;
             getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
-        }else if (lengua[item_lengua].equals("Frances")){
+        }else if (lengua[item_lengua].equals("Français")){
             local = new Locale("fr");
             configuration.locale = local;
             getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
-        }else if (lengua[item_lengua].equals("Portuguese")){
+        }else if (lengua[item_lengua].equals("Portugues")){
             local = new Locale("pt");
             configuration.locale = local;
             getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());

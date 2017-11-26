@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
 
 /**
  * Created by username on 11/25/2017.
@@ -114,9 +117,18 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
     {
         switch (item.getItemId())
         {
-            case R.id.nav_camera:
+            case R.id.nav_marker:
                 Intent intent1 = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.nav_where_do:
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                WhereDoYouGo dialog = new WhereDoYouGo();
+                dialog.show(fragmentManager, "WhereDoYouGo");
+                break;
+            case R.id.edit_profile:
+                Intent intent2 = new Intent(getApplicationContext(), RegistryActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.change_languaje:
                 //Toast.makeText(getApplicationContext(), "Change languaje", Toast.LENGTH_LONG).show();

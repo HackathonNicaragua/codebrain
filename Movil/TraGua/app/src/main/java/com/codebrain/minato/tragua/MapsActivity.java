@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
@@ -41,6 +42,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -76,10 +79,25 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
 
     Marker lastLocationClicked = null;
 
+    //Test Circle
+    LatLng center = new LatLng(12.1493312,-86.2730808);
+    int radius = 500;
+
+    float [] resultado = new float[2];
+    double latitude = center.latitude;
+    double longitude = center.longitude;
+
+    //Location
+    LocationManager locationManager;
+    double latAct;
+    double lonAct;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         //retrieve saced state
         if (savedInstanceState != null)
@@ -101,7 +119,25 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
             bNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    SelectedFramet(item);
+                    item.setChecked(true);
+                    switch (item.getItemId()){
+                        case R.id.nav_camera:
+
+                            break;
+                        case R.id.nav_gallery:
+                            UpdatePosition();
+                            Toast.makeText(getApplicationContext(),"hd",Toast.LENGTH_LONG).show();
+                            break;
+                        case R.id.nav_slideshow:
+
+                            break;
+                        case R.id.nav_manage:
+
+                            break;
+                        case R.id.nav_share:
+
+                            break;
+                    }
                     return false;
                 }
             });
@@ -199,30 +235,31 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                 getDeviceLocation();
             }
         });
-
-        /*FragmentManager fragmentManager = getSupportFragmentManager();
-        WhereDoYouGo dialog = new WhereDoYouGo();
-        dialog.show(fragmentManager, "WhereDoYouGo");*/
     }
 
-    protected void SelectedFramet(MenuItem item) {
-        item.setChecked(true);
-        switch (item.getItemId()){
-            case R.id.nav_camera:
+    private void UpdatePosition() {
+        CircleOptions circleOptions = new CircleOptions()
+                .center(center)
+                .radius(radius)
+                .strokeColor(Color.parseColor("#0D47A1"))
+                .strokeWidth(4)
+                .fillColor(Color.argb(32, 33, 150, 243));
+        Circle circle = mMap.addCircle(circleOptions);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,17));
 
-                break;
-            case R.id.nav_gallery:
+        Location.distanceBetween( mLastKnowLocation.getLatitude(),mLastKnowLocation.getLongitude(),
+                circle.getCenter().latitude,
+                circle.getCenter().longitude,
+                resultado);
 
-                break;
-            case R.id.nav_slideshow:
+        if (resultado[0] > circle.getRadius()){
+            Toast.makeText(getApplicationContext(),"Estas Dentro",Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Estas Fuera",Toast.LENGTH_LONG).show();
 
-                break;
-            case R.id.nav_manage:
-
-                break;
         }
     }
-
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
@@ -406,4 +443,9 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                 break;
         }
     }
+
+   /* private boolean isLocationEnabled(){
+        return locationManager.isProviderEnabled(locationManager.GPS_PROVIDER ||
+                locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER));
+    }*/
 }
