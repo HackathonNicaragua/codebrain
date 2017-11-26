@@ -154,7 +154,7 @@ nav ul.MenuOptionsChoose input#NextForm:hover {
 .business_item {
 	margin: 0 auto;
 	width: 70%;
-	height: 120px;
+	height: 130px;
 	border-bottom: 5px;
 }
 
@@ -172,10 +172,13 @@ nav ul.MenuOptionsChoose input#NextForm:hover {
 }
 
 .business_item .info .title {
-	width: 100%;
 	color: #fff;
 	font-size: 19px;
 	font-weight: bold;
+}
+
+.business_item .info {
+	width: 60%;
 }
 
 .business_item .info .description {

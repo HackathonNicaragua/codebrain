@@ -213,12 +213,13 @@
 											<div class="img">
 												<img id="img_business" src="views/WebDesign/src/img/place.png" alt="business" />
 											</div>
+											
 											<div class="info">
 												<div class="title">
 													<?php
 														echo $r['title'];
 													?>
-												</div><br/>
+												</div>
 
 												<div class="description">
 													<?php
@@ -226,7 +227,7 @@
 													?>
 												</div>
 											</div>
-										</div>
+										</div><br/>
 					    			<?php
 					    		}
 							} else {
