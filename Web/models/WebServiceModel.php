@@ -263,9 +263,9 @@
 	    	@$R = $this->db->query("SELECT * FROM business_contact WHERE id_business='".$id_business."';");
 
 	    	if (@$R->rowCount() > 0)
-	    		return false;
+	    		return true;
 
-	    	return true;
+	    	return false;
 	    }
 
 	    public function addBusinessMap($id_business, $Coords){
