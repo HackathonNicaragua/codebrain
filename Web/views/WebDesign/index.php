@@ -18,7 +18,7 @@
 	<script src="views/WebDesign/js/js.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf9Fuvi4yBnxwQytLLlAbgAnWd2W_peOU&callback=initMap&libraries=places" async defer></script>
 </head>
-<body id="perspective" class="perspective effect-moveleft body_maps">
+<body id="perspective" style="background-color: rgba(48,63,129,0.7);" class="perspective effect-moveleft body_maps">
 	<section class="container">
 		<header class="menu">
 			<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
