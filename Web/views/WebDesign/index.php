@@ -107,43 +107,43 @@
 		<div class="panelOne">
 			<ul class="MenuOptionsChoose" style="width: 650px;">
 				<h2>Mi negocio es de tipo</h2>
-				<div class="OptionsBox OptionHotel">
+				<label class="OptionsBox OptionHotel" for="place_map_hotel">
 					<div class="option">
 						<input type="radio" id="place_map_hotel" name="place_map" onclick="javascript: SaveRadioButton(this);" value="hotel"> <label for="place_map_hotel">Hotel</label><br>
 					</div>
-				</div>
+				</label>
 
-				<div class="OptionsBox OptionComedor">
+				<label class="OptionsBox OptionComedor" for="place_map_comedor">
 					<div class="option">
 						<input type="radio" id="place_map_comedor" name="place_map" onclick="javascript: SaveRadioButton(this);" value="comedor"/> <label for="place_map_comedor">Comedor</label><br>
 					</div>
-				</div>
+				</label>
 
-				<div class="OptionsBox OptionTienda">
+				<label class="OptionsBox OptionTienda" for="place_map_tienda">
 					<div class="option">
 						<input type="radio" id="place_map_tienda" name="place_map" onclick="javascript: SaveRadioButton(this);" value="tienda"> <label for="place_map_tienda">Tienda</label><br>
 					</div>
-				</div>
+				</label>
 
 				<br><br/>
 
-				<div class="OptionsBox OptionHospital">
+				<label class="OptionsBox OptionHospital" for="place_map_hospital">
 					<div class="option">
 						<input type="radio" id="place_map_hospital" name="place_map" onclick="javascript: SaveRadioButton(this);" value="hospital"> <label for="place_map_hospital">Hospital</label><br>
 					</div>
-				</div>
+				</label>
 
-				<div class="OptionsBox OptionMuseo">
+				<label class="OptionsBox OptionMuseo" for="place_map_museo">
 					<div class="option">
 						<input type="radio" id="place_map_museo" name="place_map" onclick="javascript: SaveRadioButton(this);" value="museo"> <label for="place_map_museo">Museo</label><br>
 					</div>
-				</div>
+				</label>
 
-				<div class="OptionsBox OptionOtro">
+				<label class="OptionsBox OptionOtro" for="place_map_otro">
 					<div class="option">
 						<input type="radio" id="place_map_otro" name="place_map" onclick="javascript: SaveRadioButton(this);" value="otro"> <label for="place_map_otro">Otro...</label><br>
 					</div>
-				</div><br/>
+				</label><br/>
 
 				<?php
 					if (@$_SESSION['login'] != 1){
@@ -168,8 +168,12 @@
 			<input type="text" id="TextPhoneLocal" placeholder="Teléfono Local" />
 			<input type="text" id="TextPhoneSelf" placeholder="Teléfono móvil" />
 
-			<input type="button" id="BtnBack" onclick="javascript: Back();" value="Atrás" />
-			<input type="button" id="BtnMarker" onclick="javascript: FuncMarker();" value="Marcar en el mapa" />
+			<input type="text" id="lat" class="half" placeholder="Latitud"  disabled="true" />
+			<input type="text" id="lon" class="half" placeholder="Longitud" disabled="true" />
+
+			<input type="button" id="BtnBack" class="half" onclick="javascript: Back();" value="Atrás" />
+			<input type="button" id="BtnMarker" class="half" onclick="javascript: FuncMarker();" value="Marcar en el mapa" />
+			<input type="button" id="BtnSave" value="Guardar" />
 		</div>
 	</nav>
 	

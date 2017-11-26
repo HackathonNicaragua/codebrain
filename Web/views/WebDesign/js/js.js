@@ -8,6 +8,46 @@ $(document).ready(function() {
         $("#modal-view").toggleClass('ap');
     });
 
+    $("#BtnSave").click(function(event) {
+        if ( 
+            $("#TypeBusiness").val().length             * $("#BusinessTextTitle").val().length      *
+            $("#BusinessTextDescription").val().length  * $("#BusinessTextRUC").val().length        *
+            $("#BusinessTextPhoneLocal").val().length   * $("#BusinessTextPhoneSelf").val().length  *
+            $("#BusinessTextCoordLong").val().length    * $("#BusinessTextCoordLat").val().length  != 0 ) {
+                send ( {
+                    username    : 'lykn',
+                    title       : $("#BusinessTextTitle").val(),
+                    description : $("#BusinessTextDescription").val(),
+                    cod_ruc     : $("#BusinessTextRUC").val(),
+                    phone_home  : $("#BusinessTextPhoneLocal").val(),
+                    phone_self  : $("#BusinessTextPhoneSelf").val(),
+                    longitud    : $("#BusinessTextCoordLong").val(),
+                    latitud     : $("#BusinessTextCoordLat").val()
+                }, 'controller=WebService&action=AddBusiness' );
+        }
+        else{
+            console.log('Uno de los campos esta vacio!');
+        }
+    });
+
+    function send ( array , get) {
+    $.ajax({
+        type: 'POST',
+        //url: 'http://hackathon.sidemasters.xyz/HackTest/index.php?'+get,
+        url: 'index.php?'+get,
+        dataType: "json",
+        data: array,
+        success:function (data) {
+            if (data == 0){
+ 
+            } else {
+
+            }
+        }   
+    });
+}
+
+
     $(".lbl-filter input[type='checkbox']").change(function(event) {
         var places = $("#filters input[type='checkbox']:checked").map(function(){ return $(this).val();} ).get();
         console.log(places);
@@ -64,7 +104,7 @@ $(document).ready(function() {
 
 });
 // Google Maps
-var latlon, service, map, markers = [], infoWindow;
+var latlon, service, map, markers = [], infoWindow, allowed = 0;
 
 function initMap() {
     latlon = {lat: 12.1442126, lng: -86.2717132};
@@ -99,6 +139,12 @@ function initMap() {
    	} else {
         handleLocationError(false, infoWindow, map.getCenter());
     }
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        if (allowed != 0){
+            createMarker(event.latLng, 1);
+        }
+    });
 
     service = new google.maps.places.PlacesService(map);
     new AutocompleteDirectionsHandler(map);
@@ -203,17 +249,30 @@ function ChangeWindowsLogin(){
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+            createMarker(results[i].geometry.location);
         }
     }
 }
 
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-    });
+function createMarker(locations, i = 0) {
+    if ( i == 1){
+        allowed = 0;
+        clearMarkers();
+        $("#BusinessTextCoordLong, #lon").val(locations.lng);
+        $("#BusinessTextCoordLat, #lat").val(locations.lat);
+        $("#Outer2").click();
+        var marker = new google.maps.Marker({
+            map: map,
+            label: 'X',
+            position: locations
+        });
+    }
+    else{
+        var marker = new google.maps.Marker({
+            map: map,
+            position: locations
+        });
+    }
 
     markers.push(marker);
     google.maps.event.addListener(marker, 'click', function() {
@@ -260,9 +319,9 @@ function Back(){
 }
 
 function FuncMarker(){
-
+    allowed = 1;
     $("#BusinessTextTitle").val($("#TextTitle").val());
-    $("#BusinessTextDescription").val($("#TextAreaDescription").text());
+    $("#BusinessTextDescription").val($("#TextAreaDescription").val());
     $("#BusinessTextRUC").val($("#TextRUC").val());
     
     $("#BusinessTextPhoneLocal").val($("#TextPhoneLocal").val());

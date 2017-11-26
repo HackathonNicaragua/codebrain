@@ -39,6 +39,12 @@ nav ul.MenuOptionsChoose {
 }
 
 nav ul.MenuOptionsChoose .OptionsBox {
+	cursor: pointer;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
 	width: 160px;
 	height: 130px;
 	display: inline-block;
@@ -102,25 +108,34 @@ nav ul.MenuOptionsChoose input#NextForm:hover {
 	width: 500px;
 }
 
-.panelTwo input {
+/* compacte los que tenian mismos atributos y agregue unos detalles al final*/
+.panelTwo input, .panelTwo textarea { 
 	border: none;
+	color: black;
+	padding: 7px;	
 	border-bottom: 2px solid #2d2d2d;
-	background-color: rgba(0,0,0,0.3);
-	color: #fff;
+	background-color: #CECECE;
 	width: 100%;
-	padding: 7px;
 	margin-bottom: 8px;
 	font-size: 17px;
+}
+
+.panelTwo input {
 	box-shadow: 0 2px 2px 0 #000;
 }
 
 .panelTwo textarea {
-	color: #fff;
-	border: none;
-	border-bottom: 2px solid #2d2d2d;
-	background-color: rgba(0,0,0,0.3);
-	width: 100%;
 	resize: none;
-	font-size: 17px;
 	height: 100px;
 }
+
+/* Modesto */
+
+.panelTwo input.half { 
+	width: 49%; 
+	text-align: center;
+}
+
+#BtnBack  { background-color: #DD0000; color: white; }
+#BtnMarker{ background-color: #006699; color: white; }
+#BtnSave  { background-color: #00CC33; color: white; }
