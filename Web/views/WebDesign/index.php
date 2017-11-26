@@ -104,24 +104,24 @@
 		</main>
 	</section>
 	<nav class="outer-nav top horizontal hidden">
-		<form id="FormChooseCategory">
+		<div class="panelOne">
 			<ul class="MenuOptionsChoose" style="width: 650px;">
 				<h2>Mi negocio es de tipo</h2>
 				<div class="OptionsBox OptionHotel">
 					<div class="option">
-						<input type="radio" id="place_map_hotel" name="place_map" value="hotel"> <label for="place_map_hotel">Hotel</label><br>
+						<input type="radio" id="place_map_hotel" name="place_map" onclick="javascript: SaveRadioButton(this);" value="hotel"> <label for="place_map_hotel">Hotel</label><br>
 					</div>
 				</div>
 
 				<div class="OptionsBox OptionComedor">
 					<div class="option">
-						<input type="radio" id="place_map_comedor" name="place_map" value="comedor"/> <label for="place_map_comedor">Comedor</label><br>
+						<input type="radio" id="place_map_comedor" name="place_map" onclick="javascript: SaveRadioButton(this);" value="comedor"/> <label for="place_map_comedor">Comedor</label><br>
 					</div>
 				</div>
 
 				<div class="OptionsBox OptionTienda">
 					<div class="option">
-						<input type="radio" id="place_map_tienda" name="place_map" value="tienda"> <label for="place_map_tienda">Tienda</label><br>
+						<input type="radio" id="place_map_tienda" name="place_map" onclick="javascript: SaveRadioButton(this);" value="tienda"> <label for="place_map_tienda">Tienda</label><br>
 					</div>
 				</div>
 
@@ -129,19 +129,19 @@
 
 				<div class="OptionsBox OptionHospital">
 					<div class="option">
-						<input type="radio" id="place_map_hospital" name="place_map" value="hospital"> <label for="place_map_hospital">Hospital</label><br>
+						<input type="radio" id="place_map_hospital" name="place_map" onclick="javascript: SaveRadioButton(this);" value="hospital"> <label for="place_map_hospital">Hospital</label><br>
 					</div>
 				</div>
 
 				<div class="OptionsBox OptionMuseo">
 					<div class="option">
-						<input type="radio" id="place_map_museo" name="place_map" value="museo"> <label for="place_map_museo">Museo</label><br>
+						<input type="radio" id="place_map_museo" name="place_map" onclick="javascript: SaveRadioButton(this);" value="museo"> <label for="place_map_museo">Museo</label><br>
 					</div>
 				</div>
 
 				<div class="OptionsBox OptionOtro">
 					<div class="option">
-						<input type="radio" id="place_map_otro" name="place_map" value="otro"> <label for="place_map_otro">Otro...</label><br>
+						<input type="radio" id="place_map_otro" name="place_map" onclick="javascript: SaveRadioButton(this);" value="otro"> <label for="place_map_otro">Otro...</label><br>
 					</div>
 				</div><br/>
 
@@ -157,8 +157,25 @@
 					}
 				?>
 			</ul>
-		</form>
+		</div>
+
+		<div class="panelTwo" style="display: none;">
+			<h3>Describa su negocio</h3>
+			<input type="text" id="TextTitle" placeholder="* Título" />
+			<textarea id="TextAreaDescription" placeholder="Descripción"></textarea>
+			<input type="text" id="TextRUC" placeholder="Código RUC" />
+			
+			<input type="text" id="TextPhoneLocal" placeholder="Teléfono Local" />
+			<input type="text" id="TextPhoneSelf" placeholder="Teléfono móvil" />
+
+			<input type="button" id="BtnBack" onclick="javascript: Back();" value="Atrás" />
+			<input type="button" id="BtnMarker" onclick="javascript: FuncMarker();" value="Marcar en el mapa" />
+		</div>
 	</nav>
+	
+	<form id="FormSendDataBusiness">
+		<input type="hidden" id="TypeBusiness" />
+	</form>
 
 	<section class="login hidden acaelcodigo">
 		<?php

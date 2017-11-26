@@ -243,6 +243,22 @@ function SendLogin(){
 
 }
 
+function SaveRadioButton(value){
+    $("#TypeBusiness").val($(value).val());
+}
+
 function NextLevel(){
-    alert("Tranquilo caballero");
+    if ($("#TypeBusiness").val() != ""){
+        $(".panelOne").hide(600);
+        $(".panelTwo").show(600);
+    }
+}
+
+function Back(){
+    $(".panelTwo").hide(600);
+    $(".panelOne").show(600);
+}
+
+function FuncMarker(){
+    $("#map").click();
 }
