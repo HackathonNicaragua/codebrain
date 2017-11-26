@@ -20,6 +20,8 @@ public class NotificationWrapper {
                 .setSmallIcon(Icono)
                 .setContentTitle("Notification!")
                 .setContentText(text)
+                .setContentInfo("4")
+                .setTicker("Alerta!")
                 .setVibrate(new long[] {100,250,100,500})
                 .setAutoCancel(true);
 

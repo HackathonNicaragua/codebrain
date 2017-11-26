@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.codebrain.minato.tragua.CustomDialogs.BaseDialog;
 import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
@@ -141,7 +142,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         });
 
         FragmentManager fm = getSupportFragmentManager();
-        BaseDialog dialog = new BaseDialog();
+        NewPlaceMarker dialog = new NewPlaceMarker();
         dialog.show(fm, "Pruibdusc");
     }
 
@@ -279,6 +280,10 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     @Override
     public void onCompleteDialog(Bundle args)
     {
+        String business = args.getString("business");
+        String description = args.getString("description");
+        String RUC = args.getString("Cod_Ruc");
 
+        Toast.makeText(getApplicationContext(),"Trabajo: " + business + "Descripcion: " + description + "Ruc: " + RUC,Toast.LENGTH_LONG).show();
     }
 }
