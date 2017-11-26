@@ -143,7 +143,7 @@ function send ( array , get) {
 
 				setTimeout(function(){
 					window.location.reload();
-				}, 2300);
+				}, 2400);
 			} else {
 				setTimeout(function() {
 				formAnim.faceDirection(5);

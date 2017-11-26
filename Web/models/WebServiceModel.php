@@ -275,8 +275,27 @@
 	    	return false;
 	    }
 
+	    public function getUserFirstname($username){
+	    	$stmt = $this->db->query("SELECT * FROM user_info WHERE username='".$username."'");
+	    
+	    	if ($stmt->rowCount() > 0){
+	    		$UsersData = [];
+
+	    		while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
+	    			$UsersData[] = [
+	    				'firstname' => $row['firstname']
+	    			];
+	    		}
+
+	    		foreach ($UsersData as $value) {
+	    			return $value['firstname'];
+	    		}
+	    	}
+	    }
+
+
 	    public function getBusinessId($username, $title){
-	    	$QBusiness = $this->db->query("SELECT id_business FROM business WHERE username='".$username."' AND title='".$title."'");
+	    	$stmt = $this->db->query("SELECT id_business FROM business WHERE username='".$username."' AND title='".$title."'");
 	    
 	    	if ($stmt->rowCount() > 0){
 	    		$UsersData = [];

@@ -23,6 +23,7 @@
 					@session_start();
 					@$_SESSION['login'] = 1;
 					@$_SESSION['username'] = $_REQUEST['username'];
+					@$_SESSION['firstname'] = $WebService->getUserFirstname($_REQUEST['username']);
 					echo 0;
 				} else {
 					echo 2;		#Error de logueo, credenciales incorrectas

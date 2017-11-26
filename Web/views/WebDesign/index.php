@@ -54,7 +54,7 @@
 						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
 						<section id="Opciones">
 							<section id="Outer2" class="Outer1"><i class="fa fa-bars" aria-hidden="true"></i> Idioma</section>
-							<section id="Outer3" class="Outer2"><i class="fa fa-user-circle" aria-hidden="true"></i> <?php echo @$_SESSION['username']; ?></section>
+							<section id="Outer3" class="Outer2"><i class="fa fa-user-circle" aria-hidden="true"></i> <?php echo @$_SESSION['firstname']; ?></section>
 							<section id="Outer4" class="Outer3" onclick="javascript: CloseSession();"><i class="fa fa-bars" aria-hidden="true"></i> Cerrar sesión</section>
 						</section>
 					</header>
