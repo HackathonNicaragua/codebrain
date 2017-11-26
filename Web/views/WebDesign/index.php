@@ -92,11 +92,7 @@
 						<img src="views/WebDesign/img/restaurante.png" alt="f4">
 					</label>
 					<label for="f5" class="lbl-filter">
-						<input type="checkbox" id="f5" value="church">
-						<img src="views/WebDesign/img/iglesia.png" alt="f5">
-					</label>
-					<label for="f6" class="lbl-filter">
-						<input type="checkbox" id="f6" value="store">
+						<input type="checkbox" id="f5" value="store">
 						<img src="views/WebDesign/img/Tienda.png" alt="f6">
 					</label>
 				</section>

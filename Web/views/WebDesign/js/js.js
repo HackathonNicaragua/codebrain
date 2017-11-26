@@ -103,7 +103,7 @@ $(document).ready(function() {
 
 });
 // Google Maps
-var latlon, service, map, markers = [], infoWindow, allowed = 0;
+var latlon, service, map, markers = [], infoWindow, allowed = 0, iconBase = 'views/WebDesign/img/';
 
 function initMap() {
     latlon = {lat: 12.1442126, lng: -86.2717132};
@@ -248,7 +248,8 @@ function ChangeWindowsLogin(){
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-            createMarker(results[i].geometry.location);
+            createMarker(results[i].geometry.location, 0);
+            console.log(results[i]);
         }
     }
 }
@@ -258,11 +259,11 @@ function createMarker(locations, i = 0) {
         allowed = 0;
         clearMarkers();
         $("#BusinessTextCoordLong, #lon").val(locations.lng);
-        $("#BusinessTextCoordLat, #lat").val(locations.lat);
+        $("#BusinessTextCoordLat,  #lat").val(locations.lat);
         $("#Outer2").click();
         var marker = new google.maps.Marker({
             map: map,
-            label: 'X',
+            icon: iconBase+'m_new.png',
             position: locations
         });
     }
@@ -336,4 +337,10 @@ function notificar(text) {
         $("#Notification").text(text).addClass('show');
     }, 1200 );
     $("#Notification").removeClass('show');
+}
+
+
+/* --- Register --- */
+function get_business() {
+    send ( {none:'none'}, 'controller=WebService&action=AddBusiness' );
 }
