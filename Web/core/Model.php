@@ -13,9 +13,9 @@ class Model {
 
 	public function getConnection(){
 		$host = "127.0.0.1";
-        $user = "SideMaster";
-        $pass = "Inform@tico";
-        $dbase = "codebrain";
+        $user = "root";
+        $pass = "root";
+        $dbase = "HackTest";
 
 		$cn = sprintf("host=%s;dbname=%s", $host, $dbase);
 

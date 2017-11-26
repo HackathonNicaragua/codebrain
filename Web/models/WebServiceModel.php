@@ -162,7 +162,17 @@
 	    }
 
 	    public function getBusiness(){
-	    	$stmt = $this->db->query("SELECT * FROM user;");
+	    	$stmt = $this->db->query("SELECT * FROM business;");
+
+			if ($stmt->rowCount() > 0)
+	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
+					$RawData[] = $r;
+
+			return $RawData;
+	    }
+
+	    public function getBusinessPosition(){
+	    	$stmt = $this->db->query("SELECT * from business inner join business_map on business.id_business=business_map.id_business;");
 
 			if ($stmt->rowCount() > 0)
 	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))

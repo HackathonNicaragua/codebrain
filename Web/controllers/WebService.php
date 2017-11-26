@@ -80,7 +80,14 @@
 			$Model = new LoadModel("WebServiceModel");
 			$WebService = new WebServiceModel();
 
-			return json_encode($WebService->getBusiness());
+			print_r(json_encode($WebService->getBusiness()));
+		}
+
+		public function getBusinessPosition(){
+			$Model = new LoadModel("WebServiceModel");
+			$WebService = new WebServiceModel();
+
+			echo json_encode($WebService->getBusinessPosition());
 		}
 	}
 ?>

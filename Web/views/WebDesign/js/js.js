@@ -29,24 +29,6 @@ $(document).ready(function() {
         }
     });
 
-    function send ( array , get) {
-    $.ajax({
-        type: 'POST',
-        //url: 'http://hackathon.sidemasters.xyz/HackTest/index.php?'+get,
-        url: 'index.php?'+get,
-        dataType: "json",
-        data: array,
-        success:function (data) {
-            if (data == 0){
-                notificar('Exito');
-            } else {
-                notificar('Error');
-            }
-        }   
-    });
-}
-
-
     $(".lbl-filter input[type='checkbox']").change(function(event) {
         var places = $("#filters input[type='checkbox']:checked").map(function(){ return $(this).val();} ).get();
         console.log(places);
@@ -100,7 +82,6 @@ $(document).ready(function() {
 	function scrollY() {
 		return window.pageYOffset || window.scrollTop;
 	}
-
 });
 // Google Maps
 var latlon, service, map, markers = [], infoWindow, allowed = 0;
@@ -144,9 +125,12 @@ function initMap() {
             createMarker(event.latLng, 1);
         }
     });
-
     service = new google.maps.places.PlacesService(map);
     new AutocompleteDirectionsHandler(map);
+
+
+    createMarker( google.maps.LatLng(12.14735415483116, -86.2779951095581), 1 );
+    createMarker( google.maps.LatLng(12.142969878190822, -86.26647233963013), 1 );
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -219,6 +203,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 			window.alert('Directions request failed due to ' + status);
 		}
 	});
+
+    send ( 'get', {controller:'WebService', action:'getBusinessPosition'} );
 };
 
 function ChangeWindowsRegistro(){
@@ -262,7 +248,7 @@ function createMarker(locations, i = 0) {
         $("#Outer2").click();
         var marker = new google.maps.Marker({
             map: map,
-            label: 'X',
+            icon: 'views/WebDesign/img/m_new.png',
             position: locations
         });
     }
@@ -341,3 +327,46 @@ function notificar(text) {
     $("#Notification").removeClass('show');
     window.location.reload();
 }
+
+function send ( array , get) {
+    console.log('entro');
+        if ( array != 'get'){
+            $.ajax({
+                type: 'POST',
+                //url: 'http://hackathon.sidemasters.xyz/HackTest/index.php?'+get,
+                url: 'index.php?'+get,
+                dataType: "json",
+                data: array,
+                success:function (data) {
+                    if (data == 0){
+                        notificar('Exito');
+                    } else {
+                        notificar('Error');
+                    }
+                }   
+            });
+        }
+        else{
+            $.ajax({
+                type: 'GET',
+                url: 'index.php',
+                cache: false,
+                async: false,
+                data: get,
+                success:function (data) {
+                    data = JSON.parse(data);
+                    if (data != [] ){
+                        for (var i = 0; i < data.length; i++) {
+                            console.log(data[i]+":"+'lat: '+data[i].latitud,' lng: '+data[i].longitud);
+                            createMarker( google.maps.LatLng(data[i].latitud, data[i].longitud), 1 );
+                        }
+                    } else {
+                        notificar('Error');
+                    }
+                }, error: function (data) {
+                    console.log(data);
+             }});   
+            
+        }
+        console.log('salio');
+    }
