@@ -26,8 +26,6 @@
 
 	<link rel="stylesheet" href="views/WebDesign/login/css/font-awesome.css">
 
-
-	<script src="views/WebDesign/js/jquery.js"></script>
 	<script src="views/WebDesign/js/jquery.js"></script>
 	<script src="views/WebDesign/js/modernizr.js"></script>
 	<script src="views/WebDesign/js/plantilla.js"></script>
