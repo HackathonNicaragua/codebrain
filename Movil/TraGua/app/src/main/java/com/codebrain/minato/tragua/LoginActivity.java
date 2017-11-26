@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codebrain.minato.tragua.WebService.UserData;
@@ -26,6 +27,7 @@ import java.io.IOException;
 
 public class LoginActivity extends NavigationDrawerBaseActivity{
     private EditText username, password;
+    private TextView singUp;
     private AppCompatButton btLogin;
 
     private ProgressDialog progressDialog = null;
@@ -37,6 +39,7 @@ public class LoginActivity extends NavigationDrawerBaseActivity{
 
         username = (EditText)findViewById(R.id.login_username);
         password = (EditText)findViewById(R.id.login_password);
+        singUp = (TextView)findViewById(R.id.login_no_account);
         btLogin = (AppCompatButton)findViewById(R.id.login_button);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,13 @@ public class LoginActivity extends NavigationDrawerBaseActivity{
             }
         });
 
+        singUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegistryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void userLogin()
