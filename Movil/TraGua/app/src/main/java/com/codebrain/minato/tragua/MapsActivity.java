@@ -25,6 +25,7 @@ import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Route;
 import com.akexorcist.googledirection.util.DirectionConverter;
+import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
 import com.codebrain.minato.tragua.CustomDialogs.PlaceInfoDialog;
 import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
 
@@ -113,7 +114,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
 
         //Navigation View
         bNavigation = findViewById(R.id.bottom_navigation);
-        if (bNavigation != null){
+        /*if (bNavigation != null){
             bNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -139,7 +140,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                     return false;
                 }
             });
-        }
+        }*/
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -247,18 +248,19 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                 .strokeWidth(4)
                 .fillColor(Color.argb(32, 33, 150, 243));
         Circle circle = mMap.addCircle(circleOptions);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center,17));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 17));
 
-        Location.distanceBetween( mLastKnowLocation.getLatitude(),mLastKnowLocation.getLongitude(),
+        Location.distanceBetween(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude(),
                 circle.getCenter().latitude,
                 circle.getCenter().longitude,
                 resultado);
 
-        if (resultado[0] > circle.getRadius()){
-            Toast.makeText(getApplicationContext(),"Estas Dentro",Toast.LENGTH_LONG).show();
+        if (resultado[0] > circle.getRadius()) {
+            Toast.makeText(getApplicationContext(), "Estas Dentro", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Estas Fuera", Toast.LENGTH_LONG).show();
         }
-        else {
-            Toast.makeText(getApplicationContext(),"Estas Fuera",Toast.LENGTH_LONG).show();
+    }
 
     protected void SelectedFramet(MenuItem item) {
         item.setChecked(true);
@@ -478,6 +480,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                                 if (direction.isOK())
                                 {
                                     Route route = direction.getRouteList().get(0);
+                                    if (lastLocationClicked != null)lastLocationClicked.remove();
 
                                     markerOrigin = mMap.addMarker(new MarkerOptions().position(latLngOrig));
                                     markerDestiny = mMap.addMarker(new MarkerOptions().position(latLngDesti));
