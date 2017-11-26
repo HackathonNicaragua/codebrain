@@ -11,6 +11,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.codebrain.minato.tragua.ConstantValues;
@@ -19,6 +20,8 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -29,7 +32,8 @@ import static android.app.Activity.RESULT_OK;
 public class WhereDoYouGo extends DialogFragment {
 
     DialogListener dialogListener;
-    private AppCompatImageView btPlacePicker_1, btPlacePicker_2;
+    private EditText origin, destiny;
+    private LatLng latLngOrigin, latLngDestiny;
 
     static final int PLACE_PICKER_REQUEST_ORIGIN = 1;
     static final int PLACE_PICKER_REQUEST_DESTINY = 2;
@@ -41,8 +45,34 @@ public class WhereDoYouGo extends DialogFragment {
 
         View v = inflater.inflate(R.layout.where_do_you_go_dialog, null);
 
-        btPlacePicker_1 = (AppCompatImageView)v.findViewById(R.id.place_picker_1);
-        btPlacePicker_2 = (AppCompatImageView)v.findViewById(R.id.place_picker_2);
+        AppCompatImageView btPlacePicker_1 = (AppCompatImageView)v.findViewById(R.id.place_picker_1);
+        AppCompatImageView btPlacePicker_2 = (AppCompatImageView)v.findViewById(R.id.place_picker_2);
+        AppCompatButton travel_ok = (AppCompatButton)v.findViewById(R.id.travel_bt_ok);
+        AppCompatButton travel_cancel = (AppCompatButton)v.findViewById(R.id.travel_bt_cancel);
+
+        origin = (EditText)v.findViewById(R.id.where_origin);
+        destiny = (EditText)v.findViewById(R.id.where_destiny);
+
+        travel_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("dialog", 1);
+                bundle.putDouble("lat1", latLngOrigin.latitude);
+                bundle.putDouble("lon1", latLngOrigin.longitude);
+                bundle.putDouble("lat2", latLngDestiny.latitude);
+                bundle.putDouble("lon2", latLngDestiny.longitude);
+                getDialog().dismiss();
+                dialogListener.onCompleteDialog(bundle);
+            }
+        });
+
+        travel_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
 
         btPlacePicker_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +110,8 @@ public class WhereDoYouGo extends DialogFragment {
             }
         });
 
+        builder.setView(v);
+
         return builder.create();
 
         //do stuff here
@@ -108,8 +140,12 @@ public class WhereDoYouGo extends DialogFragment {
                 if (resultCode == RESULT_OK)
                 {
                     Place place = PlacePicker.getPlace(getContext(), data);
-                    String toastMsg = String.format("Place: %s", place.getName());
-                    Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
+                    String toastMsg = String.format("%s", place.getName());
+                    latLngOrigin = place.getLatLng();
+
+                    origin.setText(toastMsg);
+
+                    //Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
 
                 }
                 break;
@@ -117,8 +153,10 @@ public class WhereDoYouGo extends DialogFragment {
                 if (resultCode == RESULT_OK)
                 {
                     Place place = PlacePicker.getPlace(getContext(), data);
-                    String toastMsg = String.format("Place: %s", place.getName());
-                    Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
+                    String toastMsg = String.format("%s", place.getName());
+                    latLngDestiny = place.getLatLng();
+                    destiny.setText(toastMsg);
+                    //Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
 
                 }
                 break;
