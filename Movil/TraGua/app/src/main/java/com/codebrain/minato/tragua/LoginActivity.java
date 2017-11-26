@@ -4,6 +4,7 @@ package com.codebrain.minato.tragua;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -159,6 +160,9 @@ public class LoginActivity extends NavigationDrawerBaseActivity{
             else
             {
                 Toast.makeText(getApplicationContext(), "Loged", Toast.LENGTH_LONG).show();
+                SharedPreferences.Editor editor = getSharedPreferences("MyPref", Context.MODE_PRIVATE).edit();
+                editor.putBoolean("logged", true);
+                editor.commit();
             }
         }
     }
