@@ -32,4 +32,7 @@
     <string name="login">Login</string>
     <string name="registry">SingUp</string>
     <string name="dont_have_account">No Account yet?? Create One</string>
+
+    <string name="empty_username">Can\'t be empty</string>
+    <string name="password_incorrect">Wrong password or but insert</string>
 </resources>
