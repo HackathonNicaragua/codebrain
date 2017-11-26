@@ -347,6 +347,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         return null;
     }
 
+    //udat
+
     /**
      * Manage the response for reques permission
      */
