@@ -45,6 +45,7 @@ public class PlaceInfoDialog extends DialogFragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("dialog", 10);
                 dialogListener.onCompleteDialog(bundle);
+                getDialog().dismiss();
             }
         });
 

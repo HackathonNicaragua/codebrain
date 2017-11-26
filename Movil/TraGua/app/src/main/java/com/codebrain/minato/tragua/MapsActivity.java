@@ -210,8 +210,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                         {
                             lastLocationClicked.remove();
                         }
-                        Toast.makeText(getApplicationContext(), "Data: " + pointOfInterest.name + " id " + pointOfInterest.placeId, Toast.LENGTH_LONG).show();
-                        lastLocationClicked = addMarker("pruea1", pointOfInterest.latLng, "Hello");
+
+                        lastLocationClicked = addMarker("Place1", pointOfInterest.latLng, "Description");
                     }
                 });
 
