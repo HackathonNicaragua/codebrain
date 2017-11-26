@@ -55,6 +55,11 @@ public class WhereDoYouGo extends DialogFragment {
         travel_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (origin.getText().toString().isEmpty() || destiny.getText().toString().isEmpty())
+                {
+                    Toast.makeText(getContext(), "Emty value", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putInt("dialog", 1);
                 bundle.putDouble("lat1", latLngOrigin.latitude);
