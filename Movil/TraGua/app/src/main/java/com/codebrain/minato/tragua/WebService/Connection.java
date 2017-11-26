@@ -1,9 +1,14 @@
 package com.codebrain.minato.tragua.WebService;
 
+import android.util.Log;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -56,8 +61,19 @@ public class Connection {
         writer.close();
     }
 
-    public void getResponse()
+    public void getResponse() throws IOException, JSONException
     {
+        StringBuilder result = new StringBuilder();
+        String line;
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(this.httpURLConnection.getInputStream())
+        );
 
+        while ((line = reader.readLine()) != null)
+        {
+            result.append(line);
+        }
+
+        Log.d("Resultado", result.toString());
     }
 }
