@@ -27,4 +27,11 @@
     <string name="repeatpassword">Repetir Contraseña</string>
     <string name="login">Login</string>
     <string name="registry">SignUp</string>
+    <string name="Markers">Marcadores</string>
+    <string name="Editprofile">Editar Perfil</string>
+    <string name="where_do_you_want_to_go">A donde quieres ir</string>
+    <string name="dont_have_account">¿¿No tienes cuenta aún?? Crea una</string>
+    <string name="empty_username">No puede estar vacío</string>
+    <string name="password_incorrect">Contraseña incorrecta o insertada</string>
+    <string name="authenticating">Autenticando</string>
 </resources>

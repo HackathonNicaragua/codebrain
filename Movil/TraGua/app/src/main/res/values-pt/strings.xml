@@ -27,4 +27,11 @@
     <string name="repeatpassword">Repita a senha</string>
     <string name="login">entrar</string>
     <string name="registry">Sign Up</string>
+    <string name="where_do_you_want_to_go">Onde você quer ir</string>
+    <string name="Markers">Marcadores</string>
+    <string name="Editprofile">Editar Perfil</string>
+    <string name="dont_have_account">Ainda não conta? Crie um</string>
+    <string name="empty_username">Não pode estar vazio</string>
+    <string name="password_incorrect">Senha errada ou inserir</string>
+    <string name="authenticating">Autenticando</string>
 </resources>
