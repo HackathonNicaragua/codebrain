@@ -104,20 +104,16 @@ $("#btn_login").click(function(event) {
 
 $("#btn_register").click(function(event) {
 	if ( 
-		$("#TypeBusiness").val().length * $("#BusinessTextTitle").val().length *
-		$("#BusinessTextDescription").val().length * $("#BusinessTextRUC").val().length *
-		$("#BusinessTextPhoneLocal").val().length * $("#BusinessTextPhoneSelf").val().length *
-		$("#BusinessTextCoordLong").val().length * $("#BusinessTextCoordLat").val().length  != 0 ) {
+		$("#username").val().length * $("#firstname").val().length *
+		$("#lastname").val().length * $("#email").val().length *
+		$("#password").val().length != 0 ) {
 			send ( {
-				username  :$("#TypeBusiness").val(), 
-				firstname :$("#BusinessTextTitle").val(),
-				lastname  :$("#BusinessTextDescription").val(),
-				password  :$("#BusinessTextRUC").val(), 
-				firstname :$("#BusinessTextPhoneLocal").val(),
-				lastname  :$("#BusinessTextPhoneSelf").val(),
-				password  :$("#BusinessTextCoordLong").val(),
-				email     :$("#BusinessTextCoordLat").val()
-			}, 'controller=WebService&action=AddBusiness' );
+				username  :$("#username").val(), 
+				firstname :$("#firstname").val(),
+				lastname  :$("#lastname").val(),
+				email     :$("#email").val(),
+				password  :$("#password").val()
+			}, 'controller=WebService&action=AddUser' );
 	}
 	else{
 		console.log('Uno de los campos esta vacio!');

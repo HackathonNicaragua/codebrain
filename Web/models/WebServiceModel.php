@@ -133,9 +133,10 @@
 	    }
 
 	    public function AddBusiness($Array){
-	    	$username 	= empty($Array['username']) 	? "-" : $Array['username'];
-	    	$username 	= $this->CleanString($username);
-
+	    	// $username 	= empty($Array['username']) 	? "-" : $Array['username'];
+	    	// $username 	= $this->CleanString($username);
+	    	@session_start();
+	    	$username 		= @$_SESSION['username'];
 	    	$title 			= empty($Array['title']) 		? "-" : $Array['title'];
 	    	$description 	= empty($Array['description']) 	? "-" : $Array['description'];
 	    	$cod_ruc 		= empty($Array['cod_ruc']) 		? "-" : $Array['cod_ruc'];
