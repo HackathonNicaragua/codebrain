@@ -33,7 +33,7 @@ public class Connection {
 
     public Connection(String url, String method) throws MalformedURLException
     {
-        this.url = new URL("192.168.1.1/" + url);
+        this.url = new URL("http://172.20.8.63/codebrain/Web/?controller=WebService&action=" + url);
         this.method = method;
     }
 
@@ -61,7 +61,7 @@ public class Connection {
         writer.close();
     }
 
-    public void getResponse() throws IOException, JSONException
+    public String getResponse() throws IOException, JSONException
     {
         StringBuilder result = new StringBuilder();
         String line;
@@ -75,5 +75,6 @@ public class Connection {
         }
 
         Log.d("Resultado", result.toString());
+        return result.toString();
     }
 }
