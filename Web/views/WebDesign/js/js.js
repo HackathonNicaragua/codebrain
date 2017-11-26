@@ -67,6 +67,7 @@ $(document).ready(function() {
 var latlon, service, map, markers = [], infoWindow;
 
 function initMap() {
+    latlon = {lat: 12.1442126, lng: -86.2717132};
    	map = new google.maps.Map($('#map').get(0), { center: {lat: 12.1442126, lng: -86.2717132}, zoom: 16,
           disableDefaultUI: true });
    	/*
