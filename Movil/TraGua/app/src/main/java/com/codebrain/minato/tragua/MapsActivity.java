@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.codebrain.minato.tragua.CustomDialogs.BaseDialog;
+import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
 import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
 import com.codebrain.minato.tragua.CustomDialogs.NewPlaceMarker;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -43,6 +43,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class MapsActivity extends NavigationDrawerBaseActivity implements DialogListener{
+
+    private static final String TAG = MapsActivity.class.getSimpleName();
 
     private GoogleMap mMap;
     private CameraPosition cameraPosition;
@@ -136,7 +138,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                     }
                 });
 
-                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                /*mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
                         /*NotificationCompat.Builder mBuilder;
@@ -149,10 +151,10 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                                 .setVibrate(new long[] {100,250,100,500})
                                 .setAutoCancel(true);
 
-                        notificationManager.notify(1,mBuilder.build());*/
+                        notificationManager.notify(1,mBuilder.build());
                         ntWrapper.SetNotification(getApplicationContext(),"Hola");
                     }
-                });
+                });*/
 
                 getLocationPermission();
                 updateLocationUI();
@@ -161,7 +163,9 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         });
 
         FragmentManager fm = getSupportFragmentManager();
-        NewPlaceMarker dialog = new NewPlaceMarker();
+        //NewPlaceMarker dialog = new NewPlaceMarker();
+        WhereDoYouGo dialog = new WhereDoYouGo();
+
         dialog.show(fm, "Pruibdusc");
     }
 
@@ -297,6 +301,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         {
             if (mLocationPermissionGranted)
             {
+                Log.d("Location permission", "Granted and enabling button");
                 mMap.setMyLocationEnabled(true);
                 mMap.getUiSettings().setMyLocationButtonEnabled(true);
             }
