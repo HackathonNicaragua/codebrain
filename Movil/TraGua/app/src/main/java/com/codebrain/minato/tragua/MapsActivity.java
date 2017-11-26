@@ -6,10 +6,12 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -23,6 +25,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.akexorcist.googledirection.DirectionCallback;
+import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.constant.TransportMode;
+import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Route;
+import com.akexorcist.googledirection.util.DirectionConverter;
 import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
 import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
 import com.codebrain.minato.tragua.CustomDialogs.NewPlaceMarker;
@@ -37,10 +45,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends NavigationDrawerBaseActivity implements DialogListener{
 
@@ -64,6 +76,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     private LatLng mDefaultLocation = new LatLng(32,80);
 
     private BottomNavigationView bNavigation;
+
+    Marker lastLocationClicked = null;
 
 
     @Override
@@ -138,6 +152,31 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                     }
                 });
 
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        String tag = marker.getTag().toString();
+
+                        if (tag != null)
+                        {
+                            Toast.makeText(getApplicationContext(), "Message: " + tag, Toast.LENGTH_LONG).show();
+                        }
+                        return false;
+                    }
+                });
+
+                mMap.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
+                    @Override
+                    public void onPoiClick(PointOfInterest pointOfInterest) {
+                        if (lastLocationClicked != null)
+                        {
+                            lastLocationClicked.remove();
+                        }
+                        Toast.makeText(getApplicationContext(), "Data: " + pointOfInterest.name + " id " + pointOfInterest.placeId, Toast.LENGTH_LONG).show();
+                        lastLocationClicked = addMarker("pruea1", pointOfInterest.latLng, "Hello");
+                    }
+                });
+
                 /*mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
@@ -162,11 +201,9 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
             }
         });
 
-        FragmentManager fm = getSupportFragmentManager();
-        //NewPlaceMarker dialog = new NewPlaceMarker();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         WhereDoYouGo dialog = new WhereDoYouGo();
-
-        dialog.show(fm, "Pruibdusc");
+        dialog.show(fragmentManager, "WhereDoYouGo");
     }
 
     protected void SelectedFramet(MenuItem item) {
@@ -265,12 +302,13 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         }
     }
 
-    protected void addMarker(String title, LatLng position, String data)
+    protected Marker addMarker(String title, LatLng position, String data)
     {
         if (mMap != null)
         {
-            mMap.addMarker(new MarkerOptions().title(title).position(position).snippet(data));
+            return mMap.addMarker(new MarkerOptions().title(title).position(position).snippet(data));
         }
+        return null;
     }
 
     /**
@@ -322,10 +360,51 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     @Override
     public void onCompleteDialog(Bundle args)
     {
-        String business = args.getString("business");
-        String description = args.getString("description");
-        String RUC = args.getString("Cod_Ruc");
+        switch (args.getInt("dialog"))
+        {
+            case 1:
+                //where do you go
+                final LatLng latLngOrigin = new LatLng(args.getDouble("lat1"), args.getDouble("lon1"));
+                final LatLng latLngDestiny = new LatLng(args.getDouble("lat2"), args.getDouble("lon2"));
 
-        Toast.makeText(getApplicationContext(),"Trabajo: " + business + "Descripcion: " + description + "Ruc: " + RUC,Toast.LENGTH_LONG).show();
+                GoogleDirection.withServerKey(getResources().getString(R.string.google_maps_key)).
+                        from(latLngOrigin)
+                        .to(latLngDestiny)
+                        .transportMode(TransportMode.DRIVING)
+                        .execute(new DirectionCallback() {
+                            @Override
+                            public void onDirectionSuccess(Direction direction, String rawBody) {
+                                if (direction.isOK())
+                                {
+                                    Route route = direction.getRouteList().get(0);
+
+                                    mMap.addMarker(new MarkerOptions().position(latLngOrigin));
+                                    mMap.addMarker(new MarkerOptions().position(latLngDestiny));
+
+                                    ArrayList<LatLng> directionPositionList = route.getLegList().get(0).getDirectionPoint();
+                                    mMap.addPolyline(DirectionConverter.createPolyline(getApplicationContext(), directionPositionList, 5, Color.RED));
+
+                                    LatLng southwest = route.getBound().getSouthwestCoordination().getCoordination();
+                                    LatLng northeast = route.getBound().getNortheastCoordination().getCoordination();
+                                    LatLngBounds bounds = new LatLngBounds(southwest, northeast);
+                                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+                                }
+                            }
+
+                            @Override
+                            public void onDirectionFailure(Throwable t) {
+
+                            }
+                        });
+                break;
+            case 2:
+                //New Place marker dialog
+                String business = args.getString("business");
+                String description = args.getString("description");
+                String RUC = args.getString("Cod_Ruc");
+
+                Toast.makeText(getApplicationContext(),"Trabajo: " + business + "Descripcion: " + description + "Ruc: " + RUC,Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 }
