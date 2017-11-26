@@ -41,3 +41,55 @@ header.menu section#Opciones .Outer3:hover {
 	cursor: pointer;
 	background-color: rgba(0,0,0,.7);
 }
+
+nav ul.MenuOptionsChoose {
+	width: 650px;
+	height: 200px;
+}
+
+nav ul.MenuOptionsChoose .OptionsBox {
+	width: 160px;
+	height: 130px;
+	display: inline-block;
+	/*border: 1px solid #000;*/
+}
+
+nav ul.MenuOptionsChoose .OptionHotel {
+	background: url('../src/img/2.png');
+	background-size: cover;
+	background-attachment: inherit;
+}
+
+nav ul.MenuOptionsChoose .OptionComedor {
+	background: url('../src/img/1.png');
+	background-size: cover;
+	background-attachment: inherit;
+}
+
+nav ul.MenuOptionsChoose .OptionTienda {
+	background: url('../src/img/3.png');
+	background-size: cover;
+	background-attachment: inherit;
+}
+
+nav ul.MenuOptionsChoose .OptionHospital {
+	background: url('../src/img/4.png');
+	background-size: cover;
+	background-attachment: inherit;
+}
+
+nav ul.MenuOptionsChoose .OptionMuseo {
+	background: url('../src/img/5.png');
+	background-size: cover;
+	background-attachment: inherit;
+}
+
+nav ul.MenuOptionsChoose .OptionOtro {
+	background: url('../src/img/6.png');
+	background-size: cover;
+	background-attachment: inherit;
+}
+
+nav ul.MenuOptionsChoose .OptionsBox .option {
+	margin-top: 90%;
+}

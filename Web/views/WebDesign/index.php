@@ -41,7 +41,7 @@
 					<header class="menu">
 						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
 						<section id="Opciones">
-							<section id="Outer1"><i class="fa fa-user-circle" aria-hidden="true"></i> Iniciar sesión</section>
+							<section id="Outer1"><i class="fa fa-user-circle" aria-hidden="true"></i> ÚNETE</section>
 							<section id="Outer2"><i class="fa fa-bars" aria-hidden="true"></i> Idioma</section>
 						</section>
 					</header>
@@ -51,7 +51,7 @@
 					<header class="menu">
 						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
 						<section id="Opciones">
-							<section id="Outer2" class="Outer1"><i class="fa fa-bars" aria-hidden="true"></i> Idioma</section>
+							<section id="Outer2" class="Outer1"><i class="fa fa-map-marker" aria-hidden="true"></i> Montar negocio</section>
 							<section id="Outer3" class="Outer2"><i class="fa fa-user-circle" aria-hidden="true"></i> <?php echo @$_SESSION['firstname']; ?></section>
 							<section id="Outer4" class="Outer3" onclick="javascript: CloseSession();"><i class="fa fa-bars" aria-hidden="true"></i> Cerrar sesión</section>
 						</section>
@@ -104,11 +104,45 @@
 		</main>
 	</section>
 	<nav class="outer-nav top horizontal hidden">
-		<ul>
-			<li>Opción 1</li>
-			<li>Opción 2</li>
-			<li>Opción 3</li>
-			<li>Opción 4</li>
+		<ul class="MenuOptionsChoose">
+			<h2>Mi negocio es de tipo</h2>
+			<div class="OptionsBox OptionHotel">
+				<div class="option">
+					<input type="radio" id="place_map_hotel" name="place_map" value="hotel"> <label for="place_map_hotel">Hotel</label><br>
+				</div>
+			</div>
+
+			<div class="OptionsBox OptionComedor">
+				<div class="option">
+					<input type="radio" id="place_map_comedor" name="place_map" value="comedor"/> <label for="place_map_comedor">Comedor</label><br>
+				</div>
+			</div>
+
+			<div class="OptionsBox OptionTienda">
+				<div class="option">
+					<input type="radio" id="place_map_tienda" name="place_map" value="tienda"> <label for="place_map_tienda">Tienda</label><br>
+				</div>
+			</div>
+
+			<br><br/>
+
+			<div class="OptionsBox OptionHospital">
+				<div class="option">
+					<input type="radio" id="place_map_hospital" name="place_map" value="hospital"> <label for="place_map_hospital">Hospital</label><br>
+				</div>
+			</div>
+
+			<div class="OptionsBox OptionMuseo">
+				<div class="option">
+					<input type="radio" id="place_map_museo" name="place_map" value="museo"> <label for="place_map_museo">Museo</label><br>
+				</div>
+			</div>
+
+			<div class="OptionsBox OptionOtro">
+				<div class="option">
+					<input type="radio" id="place_map_otro" name="place_map" value="otro"> <label for="place_map_otro">Otro...</label><br>
+				</div>
+			</div><br/>
 		</ul>
 	</nav>
 
