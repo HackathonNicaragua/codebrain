@@ -140,6 +140,10 @@ function send ( array , get) {
 						formAnim.resetClasses();
 					}, 2000);
 				}, 1000);
+
+				setTimeout(function(){
+					window.location.reload();
+				}, 2300);
 			} else {
 				setTimeout(function() {
 				formAnim.faceDirection(5);

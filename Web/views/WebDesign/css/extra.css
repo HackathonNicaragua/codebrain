@@ -1,6 +1,27 @@
-#Logo, #Outer1, #Outer2, #Add_B, #Logout { height: 90%; cursor: pointer; }
-nav, ul, li { padding: 0; } 
-.Portada { border: 1px solid black; }
-.Principal { height: 200px; width: 200px; border-radius: 100%; border: 1px solid black; margin: 20px auto;}
-.navigation { min-height: 100% ;width: 30%; display: inline-block;  border: 1px solid black; vertical-align: top;}
-.info { min-height: 100% ;width: 69%; display: inline-block;  border: 1px solid black; vertical-align: top;}
+label.LogoLabel {
+	position: absolute;
+	margin-top: 2px;
+	font-size: 18px;
+}
+
+header.menu section#Opciones #Outer1 {
+	margin-right: -3px; 
+	margin-top: -10px; 
+	padding: 14.5px; 
+	background-color: rgba(0,0,0,.3);
+}
+
+header.menu section#Opciones #Outer1:hover {
+	background-color: rgba(0,0,0,.4);
+}
+
+header.menu section#Opciones #Outer2 {
+	margin-right: -20px; 
+	margin-top: -10px; 
+	padding: 14.5px; 
+	background-color: rgba(0,0,0,.5);
+}
+
+header.menu section#Opciones #Outer2:hover {
+	background-color: rgba(0,0,0,.6);
+}

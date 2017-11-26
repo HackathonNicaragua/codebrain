@@ -107,9 +107,9 @@
 	    }
 
 	    public function CheckUserEmail($email){
-	    	$R = $this->db->query("SELECT * FROM user WHERE email='".$email."';");
+	    	@$R = $this->db->query("SELECT * FROM user WHERE email='".$email."';");
 
-	    	if ($R->rowCount() > 0)
+	    	if (@$R->rowCount() > 0)
 	    		return false;
 
 	    	return true;

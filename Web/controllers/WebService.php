@@ -32,7 +32,7 @@
 			$WebService = new WebServiceModel();
 
 			if (isset($_REQUEST))
-				if ($WebService->CheckUser($_REQUEST['username']) && $WebService->CheckUserEmail($_REQUEST['email']))
+				if ($WebService->CheckUser($_REQUEST['username']))
 					if ($WebService->AddUser($_REQUEST))
 						echo 0;			#Agregado
 					else
