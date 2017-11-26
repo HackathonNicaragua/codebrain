@@ -29,6 +29,7 @@ import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Route;
 import com.akexorcist.googledirection.util.DirectionConverter;
+import com.codebrain.minato.tragua.CustomDialogs.PlaceInfoDialog;
 import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
 import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
 import com.codebrain.minato.tragua.CustomDialogs.NewPlaceMarker;
@@ -49,6 +50,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -77,7 +79,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
 
     private BottomNavigationView bNavigation;
 
-    Marker lastLocationClicked = null;
+    Marker lastLocationClicked = null, markerOrigin = null, markerDestiny = null;
+    Polyline polyline = null;
 
     //Test Circle
     LatLng center = new LatLng(12.1493312,-86.2730808);
@@ -160,7 +163,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
 
-                mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                /*mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
                     @Override
                     public View getInfoWindow(Marker marker) {
                         return null;
@@ -174,7 +177,7 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
 
                         return infoWindow;
                     }
-                });
+                });*/
 
                 mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                     @Override
@@ -188,12 +191,18 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
-                        String tag = marker.getTag().toString();
+                        if (markerOrigin != null)markerOrigin.remove();
+                        if (markerDestiny != null)markerDestiny.remove();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        PlaceInfoDialog dialog = new PlaceInfoDialog();
+                        dialog.show(fragmentManager, "PlaceInfo");
+                        //marker.showInfoWindow();;
+                        //String tag = marker.getTag().toString();
 
-                        if (tag != null)
-                        {
-                            Toast.makeText(getApplicationContext(), "Message: " + tag, Toast.LENGTH_LONG).show();
-                        }
+//                        if (tag != null)
+//                        {
+//                            Toast.makeText(getApplicationContext(), "Message: " + tag, Toast.LENGTH_LONG).show();
+//                        }
                         return false;
                     }
                 });
@@ -207,8 +216,6 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                         }
                         Toast.makeText(getApplicationContext(), "Data: " + pointOfInterest.name + " id " + pointOfInterest.placeId, Toast.LENGTH_LONG).show();
                         lastLocationClicked = addMarker("pruea1", pointOfInterest.latLng, "Hello");
-                        Intent intent = new Intent(getApplicationContext(), BusinessHomaPageActivity.class);
-                        startActivity(intent);
                     }
                 });
 
@@ -442,6 +449,43 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                 String RUC = args.getString("Cod_Ruc");
 
                 Toast.makeText(getApplicationContext(),"Trabajo: " + business + "Descripcion: " + description + "Ruc: " + RUC,Toast.LENGTH_LONG).show();
+                break;
+            case 10:
+                //trazaar ruta
+                final LatLng latLngOrig = new LatLng(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude());
+                final LatLng latLngDesti = lastLocationClicked.getPosition();
+
+                GoogleDirection.withServerKey(getResources().getString(R.string.google_maps_key)).
+                        from(latLngOrig)
+                        .to(latLngDesti)
+                        .transportMode(TransportMode.DRIVING)
+                        .execute(new DirectionCallback() {
+                            @Override
+                            public void onDirectionSuccess(Direction direction, String rawBody) {
+                                if (direction.isOK())
+                                {
+                                    Route route = direction.getRouteList().get(0);
+
+                                    markerOrigin = mMap.addMarker(new MarkerOptions().position(latLngOrig));
+                                    markerDestiny = mMap.addMarker(new MarkerOptions().position(latLngDesti));
+                                    if (polyline != null)
+                                        polyline.remove();
+
+                                    ArrayList<LatLng> directionPositionList = route.getLegList().get(0).getDirectionPoint();
+                                    polyline = mMap.addPolyline(DirectionConverter.createPolyline(getApplicationContext(), directionPositionList, 5, Color.RED));
+
+                                    LatLng southwest = route.getBound().getSouthwestCoordination().getCoordination();
+                                    LatLng northeast = route.getBound().getNortheastCoordination().getCoordination();
+                                    LatLngBounds bounds = new LatLngBounds(southwest, northeast);
+                                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+                                }
+                            }
+
+                            @Override
+                            public void onDirectionFailure(Throwable t) {
+
+                            }
+                        });
                 break;
         }
     }
