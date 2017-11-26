@@ -1,19 +1,24 @@
 package com.codebrain.minato.tragua;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -56,6 +61,8 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     private Location mLastKnowLocation;
     private LatLng mDefaultLocation = new LatLng(32,80);
 
+    private BottomNavigationView bNavigation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +81,18 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         mGeoDataClient = Places.getGeoDataClient(this, null);
         mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        //Navigation View
+        bNavigation = findViewById(R.id.bottom_navigation);
+        if (bNavigation != null){
+            bNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    SelectedFramet(item);
+                    return false;
+                }
+            });
+        }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -144,6 +163,24 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
         FragmentManager fm = getSupportFragmentManager();
         NewPlaceMarker dialog = new NewPlaceMarker();
         dialog.show(fm, "Pruibdusc");
+    }
+
+    protected void SelectedFramet(MenuItem item) {
+        item.setChecked(true);
+        switch (item.getItemId()){
+            case R.id.nav_camera:
+
+                break;
+            case R.id.nav_gallery:
+
+                break;
+            case R.id.nav_slideshow:
+
+                break;
+            case R.id.nav_manage:
+
+                break;
+        }
     }
 
     @Override
