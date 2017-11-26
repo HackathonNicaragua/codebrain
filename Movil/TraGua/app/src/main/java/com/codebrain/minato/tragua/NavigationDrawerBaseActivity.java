@@ -1,21 +1,28 @@
 package com.codebrain.minato.tragua;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
@@ -30,6 +37,7 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private Menu drawerMenu;
+    private AppCompatButton btLogin;
     Toolbar toolbar;
 
     @Override
@@ -37,9 +45,42 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.navigation_drawer_base_activity);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        boolean isLogged = sharedPreferences.getBoolean("logged", false);
+
         view_stub = (FrameLayout) findViewById(R.id.view_stub_1);
         navigationView = (NavigationView) findViewById(R.id.nav_view_1);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_1);
+
+
+        View headerLayout = navigationView.getHeaderView(0);
+        LinearLayout headerContainer = (LinearLayout) headerLayout.findViewById(R.id.headerContainer);
+        LinearLayout data_header_container = (LinearLayout)headerLayout.findViewById(R.id.data_header_Container);
+
+        if (!isLogged)
+        {
+            //no esta logueado
+            headerContainer.setGravity(Gravity.CENTER);
+            btLogin = (AppCompatButton)headerLayout.findViewById(R.id.navigationBT_Login);
+            if (btLogin != null)
+            {
+                btLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent1 = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent1);
+                    }
+                });
+            }
+        }
+        else
+        {
+            headerContainer.setGravity(Gravity.BOTTOM);
+            btLogin.setVisibility(View.GONE);
+            data_header_container.setVisibility(View.VISIBLE);
+        }
+
+
         if (drawerLayout == null)
         {
             Log.d("Drawer layout", "Es null");
@@ -118,8 +159,7 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
         switch (item.getItemId())
         {
             case R.id.nav_marker:
-                Intent intent1 = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent1);
+
                 break;
             case R.id.nav_where_do:
                 FragmentManager fragmentManager = getSupportFragmentManager();
