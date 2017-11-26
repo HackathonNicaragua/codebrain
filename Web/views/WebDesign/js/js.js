@@ -15,7 +15,6 @@ $(document).ready(function() {
             $("#BusinessTextPhoneLocal").val().length   * $("#BusinessTextPhoneSelf").val().length  *
             $("#BusinessTextCoordLong").val().length    * $("#BusinessTextCoordLat").val().length  != 0 ) {
                 send ( {
-                    username    : 'lykn',
                     title       : $("#BusinessTextTitle").val(),
                     description : $("#BusinessTextDescription").val(),
                     cod_ruc     : $("#BusinessTextRUC").val(),
@@ -39,9 +38,9 @@ $(document).ready(function() {
         data: array,
         success:function (data) {
             if (data == 0){
- 
+                notificar('Exito');
             } else {
-
+                notificar('Error');
             }
         }   
     });
@@ -328,4 +327,13 @@ function FuncMarker(){
     $("#BusinessTextPhoneSelf").val($("#TextPhoneSelf").val());
 
     $("#map").click();
+}
+
+
+//Notificacion
+function notificar(text) {
+    setTimeout( function() {
+        $("#Notification").text(text).addClass('show');
+    }, 1200 );
+    $("#Notification").removeClass('show');
 }
