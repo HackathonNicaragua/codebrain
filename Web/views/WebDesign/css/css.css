@@ -150,3 +150,34 @@ nav ul.MenuOptionsChoose input#NextForm:hover {
 	z-index: 999; 
 	right: 5%;
 }
+
+.business_item {
+	margin: 0 auto;
+	width: 70%;
+	height: 120px;
+	border-bottom: 5px;
+}
+
+.business_item .img, .info {
+	display: inline-block;
+}
+
+.business_item .img {
+	margin-right: 20px;
+	float: left;
+}
+
+.business_item .img #img_business {
+	height: 117px;
+}
+
+.business_item .info .title {
+	width: 100%;
+	color: #fff;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+.business_item .info .description {
+	color: #fff;
+}

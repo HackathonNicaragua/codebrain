@@ -341,3 +341,8 @@ function notificar(text) {
     $("#Notification").removeClass('show');
     window.location.reload();
 }
+
+function PerfilBusiness(){
+    $(".acaelcodigo").html();
+    
+}

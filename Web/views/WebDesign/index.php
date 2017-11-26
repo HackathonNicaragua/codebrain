@@ -53,7 +53,7 @@
 						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
 						<section id="Opciones">
 							<section id="Outer2" class="Outer1"><i class="fa fa-map-marker" aria-hidden="true"></i> Montar negocio</section>
-							<section id="Outer3" class="Outer2"><i class="fa fa-user-circle" aria-hidden="true"></i> <?php echo @$_SESSION['firstname']; ?></section>
+							<section id="Outer1" class="Outer2"><i class="fa fa-user-circle" onclick="javascript: PerfilBusiness();" aria-hidden="true"></i> <?php echo @$_SESSION['firstname']; ?></section>
 							<section id="Outer4" class="Outer3" onclick="javascript: CloseSession();"><i class="fa fa-bars" aria-hidden="true"></i> Cerrar sesión</section>
 						</section>
 					</header>
@@ -193,7 +193,51 @@
 
 	<section class="login hidden acaelcodigo">
 		<?php
-			include ("views/WebDesign/login/file.php");
+			if (@$_SESSION['login'] != 1){
+				include ("views/WebDesign/login/file.php");
+			} else {
+				?>
+					<div class="mybusiness">
+						<h2 align="center">Mis negocios</h2>
+
+						<?php
+							$OtherModel = new Model();
+							$username = @$_SESSION['username'];
+
+					    	$stmt = $OtherModel->db->query("SELECT * FROM business WHERE username='".$username."';");
+
+							if ($stmt->rowCount() > 0){
+					    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC)){
+					    			?>
+										<div class="business_item">
+											<div class="img">
+												<img id="img_business" src="views/WebDesign/src/img/place.png" alt="business" />
+											</div>
+											<div class="info">
+												<div class="title">
+													<?php
+														echo $r['title'];
+													?>
+												</div><br/>
+
+												<div class="description">
+													<?php
+														echo $r['description'];
+													?>
+												</div>
+											</div>
+										</div>
+					    			<?php
+					    		}
+							} else {
+								echo "No hay datos";
+							}
+
+						?>
+					</div>
+
+				<?php
+			}
 		?>
 	</section>
     <!-- <script  src="views/WebDesign/login/js/index.js"></script> -->

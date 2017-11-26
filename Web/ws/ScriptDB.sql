@@ -62,6 +62,14 @@ CREATE TABLE business_map (
     FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE business_promo (
+	id_business INT UNSIGNED NOT NULL, 
+    nombre	VARCHAR(255), 
+    promocion	VARCHAR(10), 
+    
+	FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE business_perfil (
 	id_business 	INT UNSIGNED NOT NULL, 
     folder			VARCHAR(300),

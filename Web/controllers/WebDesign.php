@@ -11,7 +11,7 @@
 
 			$Index = new WebDesignModel();
 			$ListIndex = $Index->getIndex();
-
+			
 			(new View("WebDesign/index.php", compact("ListWebDesign")));
 		}
 	}

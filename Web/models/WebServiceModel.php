@@ -162,7 +162,7 @@
 	    }
 
 	    public function getBusiness(){
-	    	$stmt = $this->db->query("SELECT * FROM user;");
+	    	$stmt = $this->db->query("SELECT * FROM business;");
 
 			if ($stmt->rowCount() > 0)
 	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
@@ -171,9 +171,10 @@
 			return $RawData;
 	    }
 
-	    public function getBusinessUser($Array){
-	    	$username = empty($Array['username']) ? "-" : $Array['username'];
-	    	$username = $this->CleanString($username);
+	    public function getBusinessUser(){
+	    	// $username = empty($Array['username']) ? "-" : $Array['username'];
+	    	// $username = $this->CleanString($username);
+	    	$username = @$_SESSION['username'];
 
 	    	$stmt = $this->db->query("SELECT * FROM user WHERE username='".$username."';");
 
