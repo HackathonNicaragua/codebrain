@@ -50,6 +50,10 @@
 
        <activity android:name=".RegistryActivity"
            android:label="Registry"/>
+
+        <activity android:name=".BusinessHomaPageActivity"
+            android:label="HomePage"/>
+
     </application>
 
 </manifest>
