@@ -1,6 +1,11 @@
 package com.codebrain.minato.tragua.WebService;
 
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -39,13 +44,20 @@ public class Connection {
         httpURLConnection.connect();
     }
 
-    public void sendParameters()
+    public void sendParameters(JSONObject object) throws IOException
     {
+        OutputStream outputStream = this.httpURLConnection.getOutputStream();
+        BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(outputStream, "UTF-8")
+        );
 
+        writer.write(object.toString());
+        writer.flush();
+        writer.close();
     }
 
     public void getResponse()
     {
-        
+
     }
 }
