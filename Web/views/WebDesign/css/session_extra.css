@@ -1,8 +1,9 @@
 label.LogoLabel {
 	position: absolute;
-	margin-top: 2px;
-	font-size: 20px;
+	margin-top: 1px;
+	font-size: 22px;
 	font-weight: bold;
+	text-shadow: 1px 1px 0 #000;
 }
 
 header.menu section#Opciones .Outer1 {
