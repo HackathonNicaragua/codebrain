@@ -1,9 +1,6 @@
 package com.codebrain.minato.tragua;
 
 import android.Manifest;
-import android.app.Fragment;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
