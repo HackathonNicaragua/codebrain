@@ -15,7 +15,7 @@
 	<script src="views/WebDesign/js/modernizr.js"></script>
 	<script src="views/WebDesign/js/plantilla.js"></script>
 	<script src="views/WebDesign/js/js.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf9Fuvi4yBnxwQytLLlAbgAnWd2W_peOU&callback=initMap&libraries=places" async defer></script>
+    <script id="googleapi" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf9Fuvi4yBnxwQytLLlAbgAnWd2W_peOU&callback=initMap&libraries=places" async defer></script>
 </head>
 <body id="perspective" class="perspective effect-moveleft body_maps">
 	<section class="container">
@@ -38,6 +38,35 @@
 			    </div>
 			</section>
 			<section id="map"></section>
+			<section id="filters">
+				<section id="modal-view">
+					<label for="f1" class="lbl-filter">
+						<input type="checkbox" id="f1" value="museum">
+						<img src="views/WebDesign/img/billete.png" alt="f1">
+					</label>
+					<label for="f2" class="lbl-filter">
+						<input type="checkbox" id="f2" value="lodging">
+						<img src="views/WebDesign/img/dormir.png" alt="f2">
+					</label>
+					<label for="f3" class="lbl-filter">
+						<input type="checkbox" id="f3" value="hospital">
+						<img src="views/WebDesign/img/hospital.png" alt="f3">
+					</label>
+					<label for="f4" class="lbl-filter">
+						<input type="checkbox" id="f4" value="restaurant">
+						<img src="views/WebDesign/img/restaurante.png" alt="f4">
+					</label>
+					<label for="f5" class="lbl-filter">
+						<input type="checkbox" id="f5" value="church">
+						<img src="views/WebDesign/img/iglesia.png" alt="f5">
+					</label>
+					<label for="f6" class="lbl-filter">
+						<input type="checkbox" id="f6" value="store">
+						<img src="views/WebDesign/img/Tienda.png" alt="f6">
+					</label>
+				</section>
+				<input type="button" value="+" id="btn_filter">
+			</section>
 		</main>
 	</section>
 	<nav class="outer-nav top horizontal hidden">
