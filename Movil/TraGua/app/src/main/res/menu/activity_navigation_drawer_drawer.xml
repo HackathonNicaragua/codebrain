@@ -5,6 +5,9 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item android:id="@+id/maps_launcher"
+            android:title="@string/go_to_maps"
+            android:icon="@drawable/maps"/>
         <item
             android:id="@+id/nav_marker"
             android:icon="@drawable/ic_menu_marcador"
@@ -30,5 +33,8 @@
                 android:icon="@drawable/ic_menu_traduccion"/>
         </menu>
     </item>
+
+    <item android:title="Powered by Google"
+        android:icon="@drawable/common_google_signin_btn_icon_dark"/>
 
 </menu>

@@ -34,4 +34,9 @@
     <string name="empty_username">Ne peut pas être vide</string>
     <string name="password_incorrect">Mauvais mot de passe ou mais insérez</string>
     <string name="authenticating">Authentification</string>
+    <string name="place_name">nom de lieu</string>
+    <string name="exit">Sortie</string>
+    <string name="trazar_ruta">tracé de trace</string>
+    <string name="more_info">Plus d\'informations</string>
+    <string name="go_to_maps">aller aux cartes</string>
 </resources>

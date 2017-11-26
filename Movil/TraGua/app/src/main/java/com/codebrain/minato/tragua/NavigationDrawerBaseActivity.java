@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
@@ -47,6 +48,7 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         boolean isLogged = sharedPreferences.getBoolean("logged", false);
+        String username = sharedPreferences.getString("username", "no_user");
 
         view_stub = (FrameLayout) findViewById(R.id.view_stub_1);
         navigationView = (NavigationView) findViewById(R.id.nav_view_1);
@@ -56,12 +58,12 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
         View headerLayout = navigationView.getHeaderView(0);
         LinearLayout headerContainer = (LinearLayout) headerLayout.findViewById(R.id.headerContainer);
         LinearLayout data_header_container = (LinearLayout)headerLayout.findViewById(R.id.data_header_Container);
+        btLogin = (AppCompatButton)headerLayout.findViewById(R.id.navigationBT_Login);
 
         if (!isLogged)
         {
             //no esta logueado
             headerContainer.setGravity(Gravity.CENTER);
-            btLogin = (AppCompatButton)headerLayout.findViewById(R.id.navigationBT_Login);
             if (btLogin != null)
             {
                 btLogin.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +80,14 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
             headerContainer.setGravity(Gravity.BOTTOM);
             btLogin.setVisibility(View.GONE);
             data_header_container.setVisibility(View.VISIBLE);
+            if (username.compareTo("no_user") != 0)
+            {
+                TextView usernameNav = (TextView)headerLayout.findViewById(R.id.username_navigation);
+                if (usernameNav != null)
+                {
+                    usernameNav.setText(username);
+                }
+            }
         }
 
 
@@ -158,6 +168,7 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
     {
         switch (item.getItemId())
         {
+
             case R.id.nav_marker:
 
                 break;
@@ -167,8 +178,7 @@ public abstract class NavigationDrawerBaseActivity extends AppCompatActivity imp
                 dialog.show(fragmentManager, "WhereDoYouGo");
                 break;
             case R.id.edit_profile:
-                Intent intent2 = new Intent(getApplicationContext(), RegistryActivity.class);
-                startActivity(intent2);
+                Toast.makeText(getApplicationContext(), "En desarrollo....", Toast.LENGTH_LONG).show();
                 break;
             case R.id.change_languaje:
                 //Toast.makeText(getApplicationContext(), "Change languaje", Toast.LENGTH_LONG).show();

@@ -162,7 +162,10 @@ public class LoginActivity extends NavigationDrawerBaseActivity{
                 Toast.makeText(getApplicationContext(), "Loged", Toast.LENGTH_LONG).show();
                 SharedPreferences.Editor editor = getSharedPreferences("MyPref", Context.MODE_PRIVATE).edit();
                 editor.putBoolean("logged", true);
-                editor.commit();
+                editor.putString("username", username.getText().toString());
+                editor.apply();
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
             }
         }
     }
