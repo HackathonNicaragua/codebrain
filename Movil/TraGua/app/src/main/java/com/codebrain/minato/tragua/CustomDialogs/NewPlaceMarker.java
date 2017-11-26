@@ -52,6 +52,7 @@ public class NewPlaceMarker extends DialogFragment {
                 description = textViewDes.getText().toString();
                 Cod_Ruc = textViewRuc.getText().toString();
                 Bundle bundle = new Bundle();
+                bundle.putInt("dialog", 2);
                 bundle.putString("business", TitleBusiness);
                 bundle.putString("description",description);
                 bundle.putString("Cod_Ruc",Cod_Ruc);
