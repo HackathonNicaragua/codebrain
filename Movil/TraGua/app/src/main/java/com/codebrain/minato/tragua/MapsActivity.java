@@ -3,8 +3,10 @@ package com.codebrain.minato.tragua;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.CursorJoiner;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -42,6 +44,7 @@ import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 
 public class MapsActivity extends NavigationDrawerBaseActivity implements DialogListener{
