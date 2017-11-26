@@ -171,19 +171,10 @@
 			return $RawData;
 	    }
 
-	    public function getBusinessPosition(){
-	    	$stmt = $this->db->query("SELECT * from business inner join business_map on business.id_business=business_map.id_business;");
-
-			if ($stmt->rowCount() > 0)
-	    		while ($r = $stmt->fetch(\PDO::FETCH_ASSOC))
-					$RawData[] = $r;
-
-			return $RawData;
-	    }
-
-	    public function getBusinessUser($Array){
-	    	$username = empty($Array['username']) ? "-" : $Array['username'];
-	    	$username = $this->CleanString($username);
+	    public function getBusinessUser(){
+	    	// $username = empty($Array['username']) ? "-" : $Array['username'];
+	    	// $username = $this->CleanString($username);
+	    	$username = @$_SESSION['username'];
 
 	    	$stmt = $this->db->query("SELECT * FROM user WHERE username='".$username."';");
 

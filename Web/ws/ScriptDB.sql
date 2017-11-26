@@ -1,3 +1,4 @@
+DROP TABLE business_promo;
 DROP TABLE business_categories;
 DROP TABLE business_photos;
 DROP TABLE business_perfil;
@@ -60,6 +61,14 @@ CREATE TABLE business_map (
     latitud		VARCHAR(50),
     
     FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE business_promo (
+	id_business INT UNSIGNED NOT NULL, 
+    nombre	VARCHAR(255), 
+    promocion	VARCHAR(10), 
+    
+	FOREIGN KEY (id_business) REFERENCES business(id_business) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE business_perfil (

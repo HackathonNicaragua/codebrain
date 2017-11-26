@@ -73,7 +73,14 @@
 			$Model 		= new LoadModel("WebServiceModel");
 			$WebService = new WebServiceModel();
 
-			return json_encode($WebService->getBusinessUser($_REQUEST));
+			return json_encode($WebService->getBusinessUser());
+		}
+
+		public function getBusinessUserWithoutJSON(){
+			$Model 		= new LoadModel("WebServiceModel");
+			$WebService = new WebServiceModel();
+
+			return $WebService->getBusinessUser();
 		}
 
 		public function getBusiness(){
