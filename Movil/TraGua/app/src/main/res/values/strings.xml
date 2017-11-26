@@ -14,10 +14,10 @@
 
     <!--Strings for sideavigationview-->
     <string name="change_languaje">Change Languaje</string>
-    <string name="Import">Import</string>
-    <string name="gallery">Gallery</string>
-    <string name="slideshow">Slideshow</string>
-    <string name="tools">Tools</string>
+    <string name="Import">Salud</string>
+    <string name="gallery">Tienda</string>
+    <string name="slideshow">Publicos</string>
+    <string name="tools">Buffet</string>
     <string name="communicate">Communicate</string>
     <string name="share">Share</string>
     <string name="send">Send</string>
@@ -33,6 +33,7 @@
     <string name="registry">SingUp</string>
     <string name="Markers">Markers</string>
     <string name="Editprofile">Edit profile</string>
+    <string name="disco">Discoteca</string>
     <string name="where_do_you_want_to_go">Where do you want to go</string>
 
     <string name="dont_have_account">No Account yet?? Create One</string>
