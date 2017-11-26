@@ -6,15 +6,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,9 +23,7 @@ import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Route;
 import com.akexorcist.googledirection.util.DirectionConverter;
-import com.codebrain.minato.tragua.CustomDialogs.WhereDoYouGo;
 import com.codebrain.minato.tragua.CustomDialogs.DialogListener;
-import com.codebrain.minato.tragua.CustomDialogs.NewPlaceMarker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -80,7 +73,6 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //retrieve saced state
         if (savedInstanceState != null)
         {
@@ -140,14 +132,14 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
                     }
                 });
 
-                mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+               /* mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                     @Override
                     public void onMapLongClick(LatLng latLng) {
                         FragmentManager fm = getSupportFragmentManager();
                         NewPlaceMarker dialog = new NewPlaceMarker();
                         dialog.show(fm, "New Place MarkerDialog");
                     }
-                });
+                });*/
 
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
@@ -208,17 +200,20 @@ public class MapsActivity extends NavigationDrawerBaseActivity implements Dialog
     protected void SelectedFramet(MenuItem item) {
         item.setChecked(true);
         switch (item.getItemId()){
-            case R.id.nav_camera:
-
+            case R.id.nav_Salud:
+                Toast.makeText(getApplicationContext(),"Cargando Lugares de Salud",Toast.LENGTH_LONG).show();
                 break;
-            case R.id.nav_gallery:
-
+            case R.id.nav_Tienda:
+                Toast.makeText(getApplicationContext(),"Cargando Lugares de Tienda",Toast.LENGTH_LONG).show();
                 break;
-            case R.id.nav_slideshow:
-
+            case R.id.nav_publicos:
+                Toast.makeText(getApplicationContext(),"Cargando Lugares de Publicos",Toast.LENGTH_LONG).show();
                 break;
-            case R.id.nav_manage:
-
+            case R.id.nav_Buffes:
+                Toast.makeText(getApplicationContext(),"Cargando Lugares de Buffes",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_Discoteca:
+                Toast.makeText(getApplicationContext(),"Cargando Lugares de Discoteca",Toast.LENGTH_LONG).show();
                 break;
         }
     }
