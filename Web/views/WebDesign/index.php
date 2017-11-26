@@ -42,7 +42,7 @@
 						<section id="Logo"><img src="views/WebDesign/src/logo.png" style="width: 45px; margin: -8px 20px;" alt="Logo"><label class="LogoLabel">Tragua</label></section>
 						<section id="Opciones">
 							<section id="Outer1"><i class="fa fa-user-circle" aria-hidden="true"></i> ÚNETE</section>
-							<section id="Outer2"><i class="fa fa-bars" aria-hidden="true"></i> Idioma</section>
+							<section id="Outer2"><i class="fa fa-map-marker" aria-hidden="true"></i> Montar un negocio</section>
 						</section>
 					</header>
 				<?php
@@ -104,7 +104,7 @@
 		</main>
 	</section>
 	<nav class="outer-nav top horizontal hidden">
-		<ul class="MenuOptionsChoose">
+		<ul class="MenuOptionsChoose" style="width: 650px;">
 			<h2>Mi negocio es de tipo</h2>
 			<div class="OptionsBox OptionHotel">
 				<div class="option">
@@ -143,6 +143,7 @@
 					<input type="radio" id="place_map_otro" name="place_map" value="otro"> <label for="place_map_otro">Otro...</label><br>
 				</div>
 			</div><br/>
+			<input type="button" value="Siguiente" id="NextForm" />
 		</ul>
 	</nav>
 

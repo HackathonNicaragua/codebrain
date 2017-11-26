@@ -226,3 +226,7 @@ function clearMarkers() {
         }
     markers = [];
 }
+
+function CloseSession(){
+    window.location.href="views/WebDesign/login/php/logout.php";
+}

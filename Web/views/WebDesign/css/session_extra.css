@@ -93,3 +93,17 @@ nav ul.MenuOptionsChoose .OptionOtro {
 nav ul.MenuOptionsChoose .OptionsBox .option {
 	margin-top: 90%;
 }
+
+nav ul.MenuOptionsChoose input#NextForm {
+	border: none;
+	padding: 7px;
+	margin-top: 10px;
+	color: #fff;
+	background-color: teal;
+	font-size: 17px;
+}
+
+nav ul.MenuOptionsChoose input#NextForm:hover {
+	background-color: rgba(0,0,0,.3);
+
+}
