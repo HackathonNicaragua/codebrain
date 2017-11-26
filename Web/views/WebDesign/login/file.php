@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="views/WebDesign/login/css/style.css">
 
 <!-- Agrega el formulario aqui -->
-<div class="form" id="form">
+<div class="form login" id="form">
     <div class="finishedFormCod">
     	<div class="field email">
             <div class="icon"></div>

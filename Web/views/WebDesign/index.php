@@ -32,7 +32,7 @@
 	<script src="views/WebDesign/js/js.js"></script>
     <script id="googleapi" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf9Fuvi4yBnxwQytLLlAbgAnWd2W_peOU&callback=initMap&libraries=places" async defer></script>
 </head>
-<body id="perspective" style="background-color: rgba(48,63,129,0.7);" class="perspective effect-moveleft body_maps">
+<body id="perspective" style="background-color: rgba(87,188,144,0.7);" class="perspective effect-moveleft body_maps">
 	<span id="Notification"></span>
 	<section class="container">
 		

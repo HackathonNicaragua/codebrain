@@ -329,11 +329,15 @@ function FuncMarker(){
     $("#map").click();
 }
 
-
 //Notificacion
 function notificar(text) {
     setTimeout( function() {
         $("#Notification").text(text).addClass('show');
     }, 1200 );
+
+    setTimeout( function() {
+        $("#Notification").hide(1000);
+    }, 1200 );
     $("#Notification").removeClass('show');
+    window.location.reload();
 }

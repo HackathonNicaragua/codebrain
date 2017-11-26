@@ -152,9 +152,9 @@
 	    
 	    	if ($stmt->execute()){
 	    		$id_business = $this->getBusinessId($username, $title);
-
 	    		if ($this->AddBusinessMap($id_business, $Array))
-	    			return true;
+	    			if ($this->addBusinessContact($id_business, $Array))
+	    				return true;
 	    	}
 
 	    	return false;
@@ -250,9 +250,18 @@
 	    }
 
 	    public function CheckBusiness($id_business){
-	    	$R = $this->db->query("SELECT * FROM business WHERE id_business='".$id_business."';");
+	    	@$R = $this->db->query("SELECT * FROM business WHERE id_business='".$id_business."';");
 
-	    	if ($R->rowCount() > 0)
+	    	if (@$R->rowCount() > 0)
+	    		return false;
+
+	    	return true;
+	    }
+
+	    public function CheckBusinessContact($id_business){
+	    	@$R = $this->db->query("SELECT * FROM business_contact WHERE id_business='".$id_business."';");
+
+	    	if (@$R->rowCount() > 0)
 	    		return false;
 
 	    	return true;

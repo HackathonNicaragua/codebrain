@@ -82,6 +82,5 @@
 
 			return json_encode($WebService->getBusiness());
 		}
-
 	}
 ?>
